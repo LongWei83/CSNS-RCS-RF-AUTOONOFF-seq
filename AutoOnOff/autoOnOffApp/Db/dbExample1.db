@@ -21,7 +21,7 @@ record(ai, "AutoOnOff:Parameter3")
 record(ai, "AutoOnOff:Parameter4")
 {
 	field(DESC, "parameters of RF System")
-	field(INP, "120000")
+	field(INP, "121500")
 }
 record(ai, "AutoOnOff:Parameter5")
 {
@@ -31,7 +31,7 @@ record(ai, "AutoOnOff:Parameter5")
 record(ai, "AutoOnOff:Parameter6")
 {
 	field(DESC, "parameters of RF System")
-	field(INP, "2")
+	field(INP, "1")
 }
 record(ai, "AutoOnOff:Parameter7")
 {
@@ -194,17 +194,17 @@ record(ai, "AutoOnOff:Process_Parameter1")
 record(ai, "AutoOnOff:Process_Parameter2")
 {
 	field(DESC, "Process_Parameters of RF System")
-	field(INP, "0.1")
+	field(INP, "0.06")
 }
 record(ai, "AutoOnOff:Process_Parameter3")
 {
 	field(DESC, "Process_Parameters of RF System")
-	field(INP, "0.1")
+	field(INP, "0.06")
 }
 record(ai, "AutoOnOff:Process_Parameter4")
 {
 	field(DESC, "Process_Parameters of RF System")
-	field(INP, "0.6")
+	field(INP, "0.5")
 }
 record(ai, "AutoOnOff:Process_Parameter5")
 {
@@ -229,12 +229,12 @@ record(ai, "AutoOnOff:Process_Parameter8")
 record(ai, "AutoOnOff:Process_Parameter9")
 {
 	field(DESC, "Process_Parameters of RF System")
-	field(INP, "0.6")
+	field(INP, "1")
 }
 record(ai, "AutoOnOff:Process_Parameter10")
 {
 	field(DESC, "Process_Parameters of RF System")
-	field(INP, "0.16")
+	field(INP, "0.12")
 }
 record(ai, "AutoOnOff:Process_Parameter11")
 {
@@ -255,17 +255,17 @@ record(ai, "AutoOnOff:Process_Parameter13")
 record(ai, "AutoOnOff:Process_Parameter14")
 {
 	field(DESC, "Process_Parameters of RF System")
-	field(INP, "0.1")
+	field(INP, "0.06")
 }
 record(ai, "AutoOnOff:Process_Parameter15")
 {
 	field(DESC, "Process_Parameters of RF System")
-	field(INP, "0.1")
+	field(INP, "0.06")
 }
 record(ai, "AutoOnOff:Process_Parameter16")
 {
 	field(DESC, "Process_Parameters of RF System")
-	field(INP, "0.6")
+	field(INP, "0.5")
 }
 record(ai, "AutoOnOff:Process_Parameter17")
 {
@@ -290,12 +290,12 @@ record(ai, "AutoOnOff:Process_Parameter20")
 record(ai, "AutoOnOff:Process_Parameter21")
 {
 	field(DESC, "Process_Parameters of RF System")
-	field(INP, "0.6")
+	field(INP, "1.0")
 }
 record(ai, "AutoOnOff:Process_Parameter22")
 {
 	field(DESC, "Process_Parameters of RF System")
-	field(INP, "0.16")
+	field(INP, "0.12")
 }
 record(ai, "AutoOnOff:Process_Parameter23")
 {
@@ -315,17 +315,17 @@ record(ai, "AutoOnOff:Process_Parameter25")
 record(ai, "AutoOnOff:Process_Parameter26")
 {
 	field(DESC, "Process_Parameters of RF System")
-	field(INP, "0.1")
+	field(INP, "0.06")
 }
 record(ai, "AutoOnOff:Process_Parameter27")
 {
 	field(DESC, "Process_Parameters of RF System")
-	field(INP, "0.1")
+	field(INP, "0.06")
 }
 record(ai, "AutoOnOff:Process_Parameter28")
 {
 	field(DESC, "Process_Parameters of RF System")
-	field(INP, "0.6")
+	field(INP, "0.5")
 }
 record(ai, "AutoOnOff:Process_Parameter29")
 {
@@ -350,12 +350,12 @@ record(ai, "AutoOnOff:Process_Parameter32")
 record(ai, "AutoOnOff:Process_Parameter33")
 {
 	field(DESC, "Process_Parameters of RF System")
-	field(INP, "0.6")
+	field(INP, "1.0")
 }
 record(ai, "AutoOnOff:Process_Parameter34")
 {
 	field(DESC, "Process_Parameters of RF System")
-	field(INP, "0.16")
+	field(INP, "0.12")
 }
 record(ai, "AutoOnOff:Process_Parameter35")
 {
@@ -375,17 +375,17 @@ record(ai, "AutoOnOff:Process_Parameter37")
 record(ai, "AutoOnOff:Process_Parameter38")
 {
 	field(DESC, "Process_Parameters of RF System")
-	field(INP, "0.1")
+	field(INP, "0.06")
 }
 record(ai, "AutoOnOff:Process_Parameter39")
 {
 	field(DESC, "Process_Parameters of RF System")
-	field(INP, "0.1")
+	field(INP, "0.06")
 }
 record(ai, "AutoOnOff:Process_Parameter40")
 {
 	field(DESC, "Process_Parameters of RF System")
-	field(INP, "0.6")
+	field(INP, "0.5")
 }
 record(ai, "AutoOnOff:Process_Parameter41")
 {
@@ -410,12 +410,12 @@ record(ai, "AutoOnOff:Process_Parameter44")
 record(ai, "AutoOnOff:Process_Parameter45")
 {
 	field(DESC, "Process_Parameters of RF System")
-	field(INP, "0.6")
+	field(INP, "1.0")
 }
 record(ai, "AutoOnOff:Process_Parameter46")
 {
 	field(DESC, "Process_Parameters of RF System")
-	field(INP, "0.16")
+	field(INP, "0.12")
 }
 record(ai, "AutoOnOff:Process_Parameter47")
 {
@@ -435,17 +435,17 @@ record(ai, "AutoOnOff:Process_Parameter49")
 record(ai, "AutoOnOff:Process_Parameter50")
 {
 	field(DESC, "Process_Parameters of RF System")
-	field(INP, "0.1")
+	field(INP, "0.06")
 }
 record(ai, "AutoOnOff:Process_Parameter51")
 {
 	field(DESC, "Process_Parameters of RF System")
-	field(INP, "0.1")
+	field(INP, "0.06")
 }
 record(ai, "AutoOnOff:Process_Parameter52")
 {
 	field(DESC, "Process_Parameters of RF System")
-	field(INP, "0.6")
+	field(INP, "0.5")
 }
 record(ai, "AutoOnOff:Process_Parameter53")
 {
@@ -470,12 +470,12 @@ record(ai, "AutoOnOff:Process_Parameter56")
 record(ai, "AutoOnOff:Process_Parameter57")
 {
 	field(DESC, "Process_Parameters of RF System")
-	field(INP, "0.6")
+	field(INP, "1.0")
 }
 record(ai, "AutoOnOff:Process_Parameter58")
 {
 	field(DESC, "Process_Parameters of RF System")
-	field(INP, "0.16")
+	field(INP, "0.12")
 }
 record(ai, "AutoOnOff:Process_Parameter59")
 {
@@ -495,17 +495,17 @@ record(ai, "AutoOnOff:Process_Parameter61")
 record(ai, "AutoOnOff:Process_Parameter62")
 {
 	field(DESC, "Process_Parameters of RF System")
-	field(INP, "0.1")
+	field(INP, "0.06")
 }
 record(ai, "AutoOnOff:Process_Parameter63")
 {
 	field(DESC, "Process_Parameters of RF System")
-	field(INP, "0.1")
+	field(INP, "0.06")
 }
 record(ai, "AutoOnOff:Process_Parameter64")
 {
 	field(DESC, "Process_Parameters of RF System")
-	field(INP, "0.6")
+	field(INP, "0.5")
 }
 record(ai, "AutoOnOff:Process_Parameter65")
 {
@@ -530,12 +530,12 @@ record(ai, "AutoOnOff:Process_Parameter68")
 record(ai, "AutoOnOff:Process_Parameter69")
 {
 	field(DESC, "Process_Parameters of RF System")
-	field(INP, "0.6")
+	field(INP, "1.0")
 }
 record(ai, "AutoOnOff:Process_Parameter70")
 {
 	field(DESC, "Process_Parameters of RF System")
-	field(INP, "0.16")
+	field(INP, "0.12")
 }
 record(ai, "AutoOnOff:Process_Parameter71")
 {
@@ -555,17 +555,17 @@ record(ai, "AutoOnOff:Process_Parameter73")
 record(ai, "AutoOnOff:Process_Parameter74")
 {
 	field(DESC, "Process_Parameters of RF System")
-	field(INP, "0.1")
+	field(INP, "0.06")
 }
 record(ai, "AutoOnOff:Process_Parameter75")
 {
 	field(DESC, "Process_Parameters of RF System")
-	field(INP, "0.1")
+	field(INP, "0.06")
 }
 record(ai, "AutoOnOff:Process_Parameter76")
 {
 	field(DESC, "Process_Parameters of RF System")
-	field(INP, "0.6")
+	field(INP, "0.5")
 }
 record(ai, "AutoOnOff:Process_Parameter77")
 {
@@ -590,12 +590,12 @@ record(ai, "AutoOnOff:Process_Parameter80")
 record(ai, "AutoOnOff:Process_Parameter81")
 {
 	field(DESC, "Process_Parameters of RF System")
-	field(INP, "0.6")
+	field(INP, "1.0")
 }
 record(ai, "AutoOnOff:Process_Parameter82")
 {
 	field(DESC, "Process_Parameters of RF System")
-	field(INP, "0.16")
+	field(INP, "0.12")
 }
 record(ai, "AutoOnOff:Process_Parameter83")
 {
@@ -615,17 +615,17 @@ record(ai, "AutoOnOff:Process_Parameter85")
 record(ai, "AutoOnOff:Process_Parameter86")
 {
 	field(DESC, "Process_Parameters of RF System")
-	field(INP, "0.1")
+	field(INP, "0.06")
 }
 record(ai, "AutoOnOff:Process_Parameter87")
 {
 	field(DESC, "Process_Parameters of RF System")
-	field(INP, "0.1")
+	field(INP, "0.06")
 }
 record(ai, "AutoOnOff:Process_Parameter88")
 {
 	field(DESC, "Process_Parameters of RF System")
-	field(INP, "0.6")
+	field(INP, "0.5")
 }
 record(ai, "AutoOnOff:Process_Parameter89")
 {
@@ -650,12 +650,12 @@ record(ai, "AutoOnOff:Process_Parameter92")
 record(ai, "AutoOnOff:Process_Parameter93")
 {
 	field(DESC, "Process_Parameters of RF System")
-	field(INP, "0.6")
+	field(INP, "1.0")
 }
 record(ai, "AutoOnOff:Process_Parameter94")
 {
 	field(DESC, "Process_Parameters of RF System")
-	field(INP, "0.16")
+	field(INP, "0.12")
 }
 record(ai, "AutoOnOff:Process_Parameter95")
 {

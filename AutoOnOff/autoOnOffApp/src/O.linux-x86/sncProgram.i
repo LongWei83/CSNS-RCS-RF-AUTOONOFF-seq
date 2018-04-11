@@ -186,6 +186,11 @@ ss ssOnOff {
  } state OffInit
     }
     state OnInit {
+ when (statusFlag == 10) {
+     printf("AutoOnOff: Turn On System: Interrupt!!!\n");
+     sprintf(logMsg,"rcsRf%d: Turn On Interrupt!!!",devNo);
+     pvPut(logMsg);
+ }state standBy
  when (delay(interval)) {
      sprintf(logMsg,"AutoOnOff:rcsRf%d: On Init...",devNo);
      pvPut(logMsg);
@@ -215,13 +220,6 @@ ss ssOnOff {
      pvAssign(pvToSet,pvName);
      pvGet(parameters[3]);
      pvToSet = parameters[3];
-     pvPut(pvToSet);
-     printf("AutoOnOff: %s is set to: %f\n",pvName, pvToSet);
-
-     sprintf(pvName,"AutoOnOff:rcsRf%d:PreTrig_Delay_set",devNo);
-     pvAssign(pvToSet,pvName);
-     pvGet(parameters[4]);
-     pvToSet = parameters[4];
      pvPut(pvToSet);
      printf("AutoOnOff: %s is set to: %f\n",pvName, pvToSet);
 
@@ -456,6 +454,11 @@ ss ssOnOff {
  } state OnInit2
     }
     state OnInit2 {
+ when (statusFlag == 10) {
+     printf("AutoOnOff: Turn On System: Interrupt!!!\n");
+     sprintf(logMsg,"rcsRf%d: Turn On Interrupt!!!",devNo);
+     pvPut(logMsg);
+ }state standBy
         when (devNo == 1) {
  } state OnModify
         when (devNo == 2) {
@@ -558,6 +561,11 @@ ss ssOnOff {
  } state OnModify
     }
     state OnModify {
+ when (statusFlag == 10) {
+     printf("AutoOnOff: Turn On System: Interrupt!!!\n");
+     sprintf(logMsg,"rcsRf%d: Turn On Interrupt!!!",devNo);
+     pvPut(logMsg);
+ }state standBy
  when (delay(interval)) {
      printf("AutoOnOff: Turn On System: Turn On Modify\n");
      sprintf(logMsg,"AutoOnOff:rcsRf%d: Turn On Modify...",devNo);
@@ -585,6 +593,11 @@ ss ssOnOff {
  } state OnReset
     }
     state OnReset {
+ when (statusFlag == 10) {
+     printf("AutoOnOff: Turn On System: Interrupt!!!\n");
+     sprintf(logMsg,"rcsRf%d: Turn On Interrupt!!!",devNo);
+     pvPut(logMsg);
+ }state standBy
  when (delay(interval)) {
      printf("AutoOnOff: Turn On System: Reset System\n");
      sprintf(logMsg,"AutoOnOff:rcsRf%d: Reset System...",devNo);
@@ -618,6 +631,11 @@ ss ssOnOff {
  } state OnAmpPoint
     }
     state OnAmpPoint {
+ when (statusFlag == 10) {
+     printf("AutoOnOff: Turn On System: Interrupt!!!\n");
+     sprintf(logMsg,"rcsRf%d: Turn On Interrupt!!!",devNo);
+     pvPut(logMsg);
+ }state standBy
  when (delay(1)) {
      printf("AutoOnOff: Turn On System: Set Amp Point Value\n");
      sprintf(logMsg,"AutoOnOff:rcsRf%d: Set Amp Point...",devNo);
@@ -634,6 +652,11 @@ ss ssOnOff {
  } state OnCloseTuneLoop
     }
     state OnCloseTuneLoop {
+ when (statusFlag == 10) {
+     printf("AutoOnOff: Turn On System: Interrupt!!!\n");
+     sprintf(logMsg,"rcsRf%d: Turn On Interrupt!!!",devNo);
+     pvPut(logMsg);
+ }state standBy
  when (delay(1)) {
      printf("AutoOnOff: Turn On System: Close Tune Loop\n");
      sprintf(logMsg,"AutoOnOff:rcsRf%d: Close Tune Loop...",devNo);
@@ -649,6 +672,11 @@ ss ssOnOff {
  } state OnCloseGridTune
     }
     state OnCloseGridTune {
+ when (statusFlag == 10) {
+     printf("AutoOnOff: Turn On System: Interrupt!!!\n");
+     sprintf(logMsg,"rcsRf%d: Turn On Interrupt!!!",devNo);
+     pvPut(logMsg);
+ }state standBy
  when (delay(1)) {
      printf("AutoOnOff: Turn On System: Close Grid Tune\n");
      sprintf(logMsg,"AutoOnOff:rcsRf%d: Close Grid Tune...",devNo);
@@ -664,6 +692,11 @@ ss ssOnOff {
  } state OnTuneFF
     }
     state OnTuneFF {
+ when (statusFlag == 10) {
+     printf("AutoOnOff: Turn On System: Interrupt!!!\n");
+     sprintf(logMsg,"rcsRf%d: Turn On Interrupt!!!",devNo);
+     pvPut(logMsg);
+ }state standBy
  when (delay(interval)) {
      printf("AutoOnOff: Turn On System: Turn On Tune FF\n");
      sprintf(logMsg,"AutoOnOff:rcsRf%d: Turn On Tune FF...",devNo);
@@ -679,6 +712,11 @@ ss ssOnOff {
  } state OnTuneMOff
     }
     state OnTuneMOff {
+ when (statusFlag == 10) {
+     printf("AutoOnOff: Turn On System: Interrupt!!!\n");
+     sprintf(logMsg,"rcsRf%d: Turn On Interrupt!!!",devNo);
+     pvPut(logMsg);
+ }state standBy
  when (delay(interval*1.6)) {
      printf("AutoOnOff: Turn On System: Turn Off Tune M\n");
      sprintf(logMsg,"AutoOnOff:rcsRf%d: Turn Off Tune M...",devNo);
@@ -694,6 +732,11 @@ ss ssOnOff {
  } state OnGridTuneISet
     }
     state OnGridTuneISet {
+ when (statusFlag == 10) {
+     printf("AutoOnOff: Turn On System: Interrupt!!!\n");
+     sprintf(logMsg,"rcsRf%d: Turn On Interrupt!!!",devNo);
+     pvPut(logMsg);
+ }state standBy
  when (delay(interval)) {
      printf("AutoOnOff: Turn On System: Tune Grid I Set\n");
      sprintf(logMsg,"AutoOnOff:rcsRf%d: Grid Tune I Set...",devNo);
@@ -710,6 +753,11 @@ ss ssOnOff {
  } state OnCloseAmpLoop
     }
     state OnCloseAmpLoop {
+ when (statusFlag == 10) {
+     printf("AutoOnOff: Turn On System: Interrupt!!!\n");
+     sprintf(logMsg,"rcsRf%d: Turn On Interrupt!!!",devNo);
+     pvPut(logMsg);
+ }state standBy
  when (delay(interval)) {
      printf("AutoOnOff: Turn On System: Close Amp Loop\n");
      sprintf(logMsg,"AutoOnOff:rcsRf%d: Close Amp Loop...",devNo);
@@ -725,6 +773,11 @@ ss ssOnOff {
  } state OnTuneISet
     }
     state OnTuneISet {
+ when (statusFlag == 10) {
+     printf("AutoOnOff: Turn On System: Interrupt!!!\n");
+     sprintf(logMsg,"rcsRf%d: Turn On Interrupt!!!",devNo);
+     pvPut(logMsg);
+ }state standBy
  when (delay(interval)) {
      printf("AutoOnOff: Turn On System: Tune I Set\n");
      sprintf(logMsg,"AutoOnOff:rcsRf%d: Tune I Set...",devNo);
@@ -762,6 +815,11 @@ ss ssOnOff {
  } state OnAmpFF
     }
     state OnAmpFF {
+ when (statusFlag == 10) {
+     printf("AutoOnOff: Turn On System: Interrupt!!!\n");
+     sprintf(logMsg,"rcsRf%d: Turn On Interrupt!!!",devNo);
+     pvPut(logMsg);
+ }state standBy
  when (delay(interval)) {
      printf("AutoOnOff: Turn On System: Turn On Amp FF\n");
      sprintf(logMsg,"AutoOnOff:rcsRf%d: Turn On Amp FF...",devNo);
@@ -777,6 +835,11 @@ ss ssOnOff {
  } state OnAmpCoefficUp1
     }
     state OnAmpCoefficUp1 {
+ when (statusFlag == 10) {
+     printf("AutoOnOff: Turn On System: Interrupt!!!\n");
+     sprintf(logMsg,"rcsRf%d: Turn On Interrupt!!!",devNo);
+     pvPut(logMsg);
+ }state standBy
  when (delay(1)) {
      printf("AutoOnOff: Turn On System: Amp Coeffic Up\n");
      sprintf(logMsg,"AutoOnOff:rcsRf%d: Amp Coeffic Up...",devNo);
@@ -793,6 +856,11 @@ ss ssOnOff {
  } state OnAmpCoefficUp2
     }
     state OnAmpCoefficUp2 {
+ when (statusFlag == 10) {
+     printf("AutoOnOff: Turn On System: Interrupt!!!\n");
+     sprintf(logMsg,"rcsRf%d: Turn On Interrupt!!!",devNo);
+     pvPut(logMsg);
+ }state standBy
  when (delay(1)) {
      printf("AutoOnOff: Turn On System: Amp Coeffic Up\n");
      sprintf(logMsg,"AutoOnOff:rcsRf%d: Amp Coeffic Up...",devNo);
@@ -809,6 +877,11 @@ ss ssOnOff {
  } state OnAmpCoefficUp3
     }
     state OnAmpCoefficUp3 {
+ when (statusFlag == 10) {
+     printf("AutoOnOff: Turn On System: Interrupt!!!\n");
+     sprintf(logMsg,"rcsRf%d: Turn On Interrupt!!!",devNo);
+     pvPut(logMsg);
+ }state standBy
  when (delay(1)) {
      printf("AutoOnOff: Turn On System: Amp Coeffic Up\n");
      sprintf(logMsg,"AutoOnOff:rcsRf%d: Amp Coeffic Up...",devNo);
@@ -825,6 +898,11 @@ ss ssOnOff {
  } state OnTuneComplexI
     }
     state OnTuneComplexI {
+ when (statusFlag == 10) {
+     printf("AutoOnOff: Turn On System: Interrupt!!!\n");
+     sprintf(logMsg,"rcsRf%d: Turn On Interrupt!!!",devNo);
+     pvPut(logMsg);
+ }state standBy
  when (delay(1)) {
      printf("AutoOnOff: Turn On System: Tune Complex I\n");
      sprintf(logMsg,"AutoOnOff:rcsRf%d: Tune Complex I...",devNo);
@@ -848,6 +926,11 @@ ss ssOnOff {
  } state OnTuneFFAgain
     }
     state OnTuneFFAgain {
+ when (statusFlag == 10) {
+     printf("AutoOnOff: Turn On System: Interrupt!!!\n");
+     sprintf(logMsg,"rcsRf%d: Turn On Interrupt!!!",devNo);
+     pvPut(logMsg);
+ }state standBy
  when (delay(1)) {
      printf("AutoOnOff: Turn On System: Tune FF Again\n");
      sprintf(logMsg,"AutoOnOff:rcsRf%d: Tune FF Again...",devNo);
@@ -863,6 +946,11 @@ ss ssOnOff {
  } state OnClosePhaseLoop
     }
     state OnClosePhaseLoop {
+ when (statusFlag == 10) {
+     printf("AutoOnOff: Turn On System: Interrupt!!!\n");
+     sprintf(logMsg,"rcsRf%d: Turn On Interrupt!!!",devNo);
+     pvPut(logMsg);
+ }state standBy
  when (delay(interval)) {
      printf("AutoOnOff: Turn On System: Close Phase Loop\n");
      sprintf(logMsg,"AutoOnOff:rcsRf%d: Close Phase Loop...",devNo);
@@ -878,6 +966,11 @@ ss ssOnOff {
  } state OnPhaseFF
     }
     state OnPhaseFF {
+ when (statusFlag == 10) {
+     printf("AutoOnOff: Turn On System: Interrupt!!!\n");
+     sprintf(logMsg,"rcsRf%d: Turn On Interrupt!!!",devNo);
+     pvPut(logMsg);
+ }state standBy
  when (delay(interval)) {
      printf("AutoOnOff: Turn On System: Turn On Phase FF\n");
      sprintf(logMsg,"AutoOnOff:rcsRf%d: Turn On Phase FF...",devNo);
@@ -941,6 +1034,49 @@ ss ssOnOff {
      pvToSet = process_parameters[12*(devNo-1)+11];
      pvPut(pvToSet);
      printf("AutoOnOff: %s is set to: %f\n",pvName, pvToSet);
+ } state OffOpenFFM
+    }
+    state OffOpenFFM {
+ when (delay(0.5)) {
+     printf("AutoOnOff: Turn Off System: Turn Off Modify\n");
+     sprintf(logMsg,"AutoOnOff:rcsRf%d: Turn Off Modify...",devNo);
+     pvPut(logMsg);
+
+     sprintf(pvName,"AutoOnOff:rcsRf%d:ampModifyOption_set",devNo);
+     pvAssign(pvToSwitch,pvName);
+     pvToSwitch = 0;
+     pvPut(pvToSwitch);
+     printf("AutoOnOff: %s is set to: %d\n",pvName, pvToSwitch);
+
+     sprintf(pvName,"AutoOnOff:rcsRf%d:tuneModifyOption_set",devNo);
+     pvAssign(pvToSwitch,pvName);
+     pvToSwitch = 0;
+     pvPut(pvToSwitch);
+     printf("AutoOnOff: %s is set to: %d\n",pvName, pvToSwitch);
+
+     sprintf(pvName,"AutoOnOff:rcsRf%d:phaseModifyOption_set",devNo);
+     pvAssign(pvToSwitch,pvName);
+     pvToSwitch = 0;
+     pvPut(pvToSwitch);
+     printf("AutoOnOff: %s is set to: %d\n",pvName, pvToSwitch);
+
+     sprintf(pvName,"AutoOnOff:rcsRf%d:tuneFFOption_set",devNo);
+     pvAssign(pvToSwitch,pvName);
+     pvToSwitch = 0;
+     pvPut(pvToSwitch);
+     printf("AutoOnOff: %s is set to: %d\n",pvName, pvToSwitch);
+
+     sprintf(pvName,"AutoOnOff:rcsRf%d:ampFFOption_set",devNo);
+     pvAssign(pvToSwitch,pvName);
+     pvToSwitch = 0;
+     pvPut(pvToSwitch);
+     printf("AutoOnOff: %s is set to: %d\n",pvName, pvToSwitch);
+
+     sprintf(pvName,"AutoOnOff:rcsRf%d:phaseFFOption_set",devNo);
+     pvAssign(pvToSwitch,pvName);
+     pvToSwitch = 0;
+     pvPut(pvToSwitch);
+     printf("AutoOnOff: %s is set to: %d\n",pvName, pvToSwitch);
 
      printf("AutoOnOff: Turn Off System: Amp Zero End\n");
      printf("AutoOnOff: Turn Off System: Turn Off System End\n");

@@ -106,10 +106,17 @@ static void seqg_action_ssOnOff_0_standBy(SS_ID seqg_env, int seqg_trn, int *seq
 static seqBool seqg_event_ssOnOff_0_OnInit(SS_ID seqg_env, int *seqg_ptrn, int *seqg_pnst)
 {
 # line 182 "../sncExample.stt"
+	if (seqg_var->statusFlag == 10)
+	{
+		*seqg_pnst = 0;
+		*seqg_ptrn = 0;
+		return TRUE;
+	}
+# line 187 "../sncExample.stt"
 	if (seq_delay(seqg_env, seqg_var->interval))
 	{
 		*seqg_pnst = 2;
-		*seqg_ptrn = 0;
+		*seqg_ptrn = 1;
 		return TRUE;
 	}
 	return FALSE;
@@ -123,454 +130,452 @@ static void seqg_action_ssOnOff_0_OnInit(SS_ID seqg_env, int seqg_trn, int *seqg
 	case 0:
 		{
 # line 183 "../sncExample.stt"
-			sprintf(seqg_var->logMsg, "AutoOnOff:rcsRf%d: On Init...", seqg_var->devNo);
+			printf("AutoOnOff: Turn On System: Interrupt!!!\n");
 # line 184 "../sncExample.stt"
+			sprintf(seqg_var->logMsg, "rcsRf%d: Turn On Interrupt!!!", seqg_var->devNo);
+# line 185 "../sncExample.stt"
 			seq_pvPutTmo(seqg_env, 132/*logMsg*/, DEFAULT, DEFAULT_TIMEOUT);
-# line 186 "../sncExample.stt"
-			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:fixFrequency_set", seqg_var->devNo);
-# line 187 "../sncExample.stt"
-			seq_pvAssign(seqg_env, 136/*pvToSet*/, seqg_var->pvName);
+		}
+		return;
+	case 1:
+		{
 # line 188 "../sncExample.stt"
-			seq_pvGetTmo(seqg_env, 0/*parameters*/ + (CH_ID)(0), DEFAULT, DEFAULT_TIMEOUT);
+			sprintf(seqg_var->logMsg, "AutoOnOff:rcsRf%d: On Init...", seqg_var->devNo);
 # line 189 "../sncExample.stt"
-			seqg_var->pvToSet = seqg_var->parameters[0];
-# line 190 "../sncExample.stt"
-			seq_pvPutTmo(seqg_env, 136/*pvToSet*/, DEFAULT, DEFAULT_TIMEOUT);
+			seq_pvPutTmo(seqg_env, 132/*logMsg*/, DEFAULT, DEFAULT_TIMEOUT);
 # line 191 "../sncExample.stt"
-			printf("AutoOnOff: %s is set to: %f\n", seqg_var->pvName, seqg_var->pvToSet);
+			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:fixFrequency_set", seqg_var->devNo);
+# line 192 "../sncExample.stt"
+			seq_pvAssign(seqg_env, 136/*pvToSet*/, seqg_var->pvName);
 # line 193 "../sncExample.stt"
-			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:workPeriod_set", seqg_var->devNo);
+			seq_pvGetTmo(seqg_env, 0/*parameters*/ + (CH_ID)(0), DEFAULT, DEFAULT_TIMEOUT);
 # line 194 "../sncExample.stt"
-			seq_pvAssign(seqg_env, 136/*pvToSet*/, seqg_var->pvName);
+			seqg_var->pvToSet = seqg_var->parameters[0];
 # line 195 "../sncExample.stt"
-			seq_pvGetTmo(seqg_env, 0/*parameters*/ + (CH_ID)(1), DEFAULT, DEFAULT_TIMEOUT);
+			seq_pvPutTmo(seqg_env, 136/*pvToSet*/, DEFAULT, DEFAULT_TIMEOUT);
 # line 196 "../sncExample.stt"
-			seqg_var->pvToSet = seqg_var->parameters[1];
-# line 197 "../sncExample.stt"
-			seq_pvPutTmo(seqg_env, 136/*pvToSet*/, DEFAULT, DEFAULT_TIMEOUT);
+			printf("AutoOnOff: %s is set to: %f\n", seqg_var->pvName, seqg_var->pvToSet);
 # line 198 "../sncExample.stt"
-			printf("AutoOnOff: %s is set to: %f\n", seqg_var->pvName, seqg_var->pvToSet);
+			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:workPeriod_set", seqg_var->devNo);
+# line 199 "../sncExample.stt"
+			seq_pvAssign(seqg_env, 136/*pvToSet*/, seqg_var->pvName);
 # line 200 "../sncExample.stt"
-			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:amp_set", seqg_var->devNo);
+			seq_pvGetTmo(seqg_env, 0/*parameters*/ + (CH_ID)(1), DEFAULT, DEFAULT_TIMEOUT);
 # line 201 "../sncExample.stt"
-			seq_pvAssign(seqg_env, 136/*pvToSet*/, seqg_var->pvName);
+			seqg_var->pvToSet = seqg_var->parameters[1];
 # line 202 "../sncExample.stt"
-			seq_pvGetTmo(seqg_env, 0/*parameters*/ + (CH_ID)(2), DEFAULT, DEFAULT_TIMEOUT);
+			seq_pvPutTmo(seqg_env, 136/*pvToSet*/, DEFAULT, DEFAULT_TIMEOUT);
 # line 203 "../sncExample.stt"
-			seqg_var->pvToSet = seqg_var->parameters[2];
-# line 204 "../sncExample.stt"
-			seq_pvPutTmo(seqg_env, 136/*pvToSet*/, DEFAULT, DEFAULT_TIMEOUT);
+			printf("AutoOnOff: %s is set to: %f\n", seqg_var->pvName, seqg_var->pvToSet);
 # line 205 "../sncExample.stt"
-			printf("AutoOnOff: %s is set to: %f\n", seqg_var->pvName, seqg_var->pvToSet);
+			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:amp_set", seqg_var->devNo);
+# line 206 "../sncExample.stt"
+			seq_pvAssign(seqg_env, 136/*pvToSet*/, seqg_var->pvName);
 # line 207 "../sncExample.stt"
-			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:FF_Delay_set", seqg_var->devNo);
+			seq_pvGetTmo(seqg_env, 0/*parameters*/ + (CH_ID)(2), DEFAULT, DEFAULT_TIMEOUT);
 # line 208 "../sncExample.stt"
-			seq_pvAssign(seqg_env, 136/*pvToSet*/, seqg_var->pvName);
+			seqg_var->pvToSet = seqg_var->parameters[2];
 # line 209 "../sncExample.stt"
-			seq_pvGetTmo(seqg_env, 0/*parameters*/ + (CH_ID)(3), DEFAULT, DEFAULT_TIMEOUT);
+			seq_pvPutTmo(seqg_env, 136/*pvToSet*/, DEFAULT, DEFAULT_TIMEOUT);
 # line 210 "../sncExample.stt"
-			seqg_var->pvToSet = seqg_var->parameters[3];
-# line 211 "../sncExample.stt"
-			seq_pvPutTmo(seqg_env, 136/*pvToSet*/, DEFAULT, DEFAULT_TIMEOUT);
+			printf("AutoOnOff: %s is set to: %f\n", seqg_var->pvName, seqg_var->pvToSet);
 # line 212 "../sncExample.stt"
-			printf("AutoOnOff: %s is set to: %f\n", seqg_var->pvName, seqg_var->pvToSet);
+			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:FF_Delay_set", seqg_var->devNo);
+# line 213 "../sncExample.stt"
+			seq_pvAssign(seqg_env, 136/*pvToSet*/, seqg_var->pvName);
 # line 214 "../sncExample.stt"
-			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:PreTrig_Delay_set", seqg_var->devNo);
+			seq_pvGetTmo(seqg_env, 0/*parameters*/ + (CH_ID)(3), DEFAULT, DEFAULT_TIMEOUT);
 # line 215 "../sncExample.stt"
-			seq_pvAssign(seqg_env, 136/*pvToSet*/, seqg_var->pvName);
+			seqg_var->pvToSet = seqg_var->parameters[3];
 # line 216 "../sncExample.stt"
-			seq_pvGetTmo(seqg_env, 0/*parameters*/ + (CH_ID)(4), DEFAULT, DEFAULT_TIMEOUT);
+			seq_pvPutTmo(seqg_env, 136/*pvToSet*/, DEFAULT, DEFAULT_TIMEOUT);
 # line 217 "../sncExample.stt"
-			seqg_var->pvToSet = seqg_var->parameters[4];
-# line 218 "../sncExample.stt"
-			seq_pvPutTmo(seqg_env, 136/*pvToSet*/, DEFAULT, DEFAULT_TIMEOUT);
+			printf("AutoOnOff: %s is set to: %f\n", seqg_var->pvName, seqg_var->pvToSet);
 # line 219 "../sncExample.stt"
-			printf("AutoOnOff: %s is set to: %f\n", seqg_var->pvName, seqg_var->pvToSet);
-# line 221 "../sncExample.stt"
 			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:ampCoefficient_set", seqg_var->devNo);
-# line 222 "../sncExample.stt"
+# line 220 "../sncExample.stt"
 			seq_pvAssign(seqg_env, 136/*pvToSet*/, seqg_var->pvName);
-# line 223 "../sncExample.stt"
+# line 221 "../sncExample.stt"
 			seq_pvGetTmo(seqg_env, 0/*parameters*/ + (CH_ID)(5), DEFAULT, DEFAULT_TIMEOUT);
-# line 224 "../sncExample.stt"
+# line 222 "../sncExample.stt"
 			seqg_var->pvToSet = seqg_var->parameters[5];
-# line 225 "../sncExample.stt"
+# line 223 "../sncExample.stt"
 			seq_pvPutTmo(seqg_env, 136/*pvToSet*/, DEFAULT, DEFAULT_TIMEOUT);
+# line 224 "../sncExample.stt"
+			printf("AutoOnOff: %s is set to: %f\n", seqg_var->pvName, seqg_var->pvToSet);
 # line 226 "../sncExample.stt"
-			printf("AutoOnOff: %s is set to: %f\n", seqg_var->pvName, seqg_var->pvToSet);
-# line 228 "../sncExample.stt"
 			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:ampPSet_set", seqg_var->devNo);
-# line 229 "../sncExample.stt"
+# line 227 "../sncExample.stt"
 			seq_pvAssign(seqg_env, 136/*pvToSet*/, seqg_var->pvName);
-# line 230 "../sncExample.stt"
+# line 228 "../sncExample.stt"
 			seq_pvGetTmo(seqg_env, 0/*parameters*/ + (CH_ID)(6), DEFAULT, DEFAULT_TIMEOUT);
-# line 231 "../sncExample.stt"
+# line 229 "../sncExample.stt"
 			seqg_var->pvToSet = seqg_var->parameters[6];
-# line 232 "../sncExample.stt"
+# line 230 "../sncExample.stt"
 			seq_pvPutTmo(seqg_env, 136/*pvToSet*/, DEFAULT, DEFAULT_TIMEOUT);
+# line 231 "../sncExample.stt"
+			printf("AutoOnOff: %s is set to: %f\n", seqg_var->pvName, seqg_var->pvToSet);
 # line 233 "../sncExample.stt"
-			printf("AutoOnOff: %s is set to: %f\n", seqg_var->pvName, seqg_var->pvToSet);
-# line 235 "../sncExample.stt"
 			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:ampISet_set", seqg_var->devNo);
-# line 236 "../sncExample.stt"
+# line 234 "../sncExample.stt"
 			seq_pvAssign(seqg_env, 136/*pvToSet*/, seqg_var->pvName);
-# line 237 "../sncExample.stt"
+# line 235 "../sncExample.stt"
 			seq_pvGetTmo(seqg_env, 0/*parameters*/ + (CH_ID)(7), DEFAULT, DEFAULT_TIMEOUT);
-# line 238 "../sncExample.stt"
+# line 236 "../sncExample.stt"
 			seqg_var->pvToSet = seqg_var->parameters[7];
-# line 239 "../sncExample.stt"
+# line 237 "../sncExample.stt"
 			seq_pvPutTmo(seqg_env, 136/*pvToSet*/, DEFAULT, DEFAULT_TIMEOUT);
+# line 238 "../sncExample.stt"
+			printf("AutoOnOff: %s is set to: %f\n", seqg_var->pvName, seqg_var->pvToSet);
 # line 240 "../sncExample.stt"
-			printf("AutoOnOff: %s is set to: %f\n", seqg_var->pvName, seqg_var->pvToSet);
-# line 242 "../sncExample.stt"
 			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:biasSet_set", seqg_var->devNo);
-# line 243 "../sncExample.stt"
+# line 241 "../sncExample.stt"
 			seq_pvAssign(seqg_env, 136/*pvToSet*/, seqg_var->pvName);
-# line 244 "../sncExample.stt"
+# line 242 "../sncExample.stt"
 			seq_pvGetTmo(seqg_env, 0/*parameters*/ + (CH_ID)(8), DEFAULT, DEFAULT_TIMEOUT);
-# line 245 "../sncExample.stt"
+# line 243 "../sncExample.stt"
 			seqg_var->pvToSet = seqg_var->parameters[8];
-# line 246 "../sncExample.stt"
+# line 244 "../sncExample.stt"
 			seq_pvPutTmo(seqg_env, 136/*pvToSet*/, DEFAULT, DEFAULT_TIMEOUT);
+# line 245 "../sncExample.stt"
+			printf("AutoOnOff: %s is set to: %f\n", seqg_var->pvName, seqg_var->pvToSet);
 # line 247 "../sncExample.stt"
-			printf("AutoOnOff: %s is set to: %f\n", seqg_var->pvName, seqg_var->pvToSet);
-# line 249 "../sncExample.stt"
 			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:fixTuningAngle_set", seqg_var->devNo);
-# line 250 "../sncExample.stt"
+# line 248 "../sncExample.stt"
 			seq_pvAssign(seqg_env, 136/*pvToSet*/, seqg_var->pvName);
-# line 251 "../sncExample.stt"
+# line 249 "../sncExample.stt"
 			seq_pvGetTmo(seqg_env, 0/*parameters*/ + (CH_ID)(9), DEFAULT, DEFAULT_TIMEOUT);
-# line 252 "../sncExample.stt"
+# line 250 "../sncExample.stt"
 			seqg_var->pvToSet = seqg_var->parameters[9];
-# line 253 "../sncExample.stt"
+# line 251 "../sncExample.stt"
 			seq_pvPutTmo(seqg_env, 136/*pvToSet*/, DEFAULT, DEFAULT_TIMEOUT);
+# line 252 "../sncExample.stt"
+			printf("AutoOnOff: %s is set to: %f\n", seqg_var->pvName, seqg_var->pvToSet);
 # line 254 "../sncExample.stt"
-			printf("AutoOnOff: %s is set to: %f\n", seqg_var->pvName, seqg_var->pvToSet);
-# line 256 "../sncExample.stt"
 			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:tunePSet_set", seqg_var->devNo);
-# line 257 "../sncExample.stt"
+# line 255 "../sncExample.stt"
 			seq_pvAssign(seqg_env, 136/*pvToSet*/, seqg_var->pvName);
-# line 258 "../sncExample.stt"
+# line 256 "../sncExample.stt"
 			seq_pvGetTmo(seqg_env, 0/*parameters*/ + (CH_ID)(10), DEFAULT, DEFAULT_TIMEOUT);
-# line 259 "../sncExample.stt"
+# line 257 "../sncExample.stt"
 			seqg_var->pvToSet = seqg_var->parameters[10];
-# line 260 "../sncExample.stt"
+# line 258 "../sncExample.stt"
 			seq_pvPutTmo(seqg_env, 136/*pvToSet*/, DEFAULT, DEFAULT_TIMEOUT);
+# line 259 "../sncExample.stt"
+			printf("AutoOnOff: %s is set to: %f\n", seqg_var->pvName, seqg_var->pvToSet);
 # line 261 "../sncExample.stt"
-			printf("AutoOnOff: %s is set to: %f\n", seqg_var->pvName, seqg_var->pvToSet);
-# line 263 "../sncExample.stt"
 			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:tuneISet_set", seqg_var->devNo);
-# line 264 "../sncExample.stt"
+# line 262 "../sncExample.stt"
 			seq_pvAssign(seqg_env, 136/*pvToSet*/, seqg_var->pvName);
-# line 265 "../sncExample.stt"
+# line 263 "../sncExample.stt"
 			seq_pvGetTmo(seqg_env, 0/*parameters*/ + (CH_ID)(11), DEFAULT, DEFAULT_TIMEOUT);
-# line 266 "../sncExample.stt"
+# line 264 "../sncExample.stt"
 			seqg_var->pvToSet = seqg_var->parameters[11];
-# line 267 "../sncExample.stt"
+# line 265 "../sncExample.stt"
 			seq_pvPutTmo(seqg_env, 136/*pvToSet*/, DEFAULT, DEFAULT_TIMEOUT);
+# line 266 "../sncExample.stt"
+			printf("AutoOnOff: %s is set to: %f\n", seqg_var->pvName, seqg_var->pvToSet);
 # line 268 "../sncExample.stt"
-			printf("AutoOnOff: %s is set to: %f\n", seqg_var->pvName, seqg_var->pvToSet);
-# line 270 "../sncExample.stt"
 			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:tuneISet1_set", seqg_var->devNo);
-# line 271 "../sncExample.stt"
+# line 269 "../sncExample.stt"
 			seq_pvAssign(seqg_env, 136/*pvToSet*/, seqg_var->pvName);
-# line 272 "../sncExample.stt"
+# line 270 "../sncExample.stt"
 			seq_pvGetTmo(seqg_env, 0/*parameters*/ + (CH_ID)(12), DEFAULT, DEFAULT_TIMEOUT);
-# line 273 "../sncExample.stt"
+# line 271 "../sncExample.stt"
 			seqg_var->pvToSet = seqg_var->parameters[12];
-# line 274 "../sncExample.stt"
+# line 272 "../sncExample.stt"
 			seq_pvPutTmo(seqg_env, 136/*pvToSet*/, DEFAULT, DEFAULT_TIMEOUT);
+# line 273 "../sncExample.stt"
+			printf("AutoOnOff: %s is set to: %f\n", seqg_var->pvName, seqg_var->pvToSet);
 # line 275 "../sncExample.stt"
-			printf("AutoOnOff: %s is set to: %f\n", seqg_var->pvName, seqg_var->pvToSet);
-# line 277 "../sncExample.stt"
 			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:tuneISet2_set", seqg_var->devNo);
-# line 278 "../sncExample.stt"
+# line 276 "../sncExample.stt"
 			seq_pvAssign(seqg_env, 136/*pvToSet*/, seqg_var->pvName);
-# line 279 "../sncExample.stt"
+# line 277 "../sncExample.stt"
 			seq_pvGetTmo(seqg_env, 0/*parameters*/ + (CH_ID)(13), DEFAULT, DEFAULT_TIMEOUT);
-# line 280 "../sncExample.stt"
+# line 278 "../sncExample.stt"
 			seqg_var->pvToSet = seqg_var->parameters[13];
-# line 281 "../sncExample.stt"
+# line 279 "../sncExample.stt"
 			seq_pvPutTmo(seqg_env, 136/*pvToSet*/, DEFAULT, DEFAULT_TIMEOUT);
+# line 280 "../sncExample.stt"
+			printf("AutoOnOff: %s is set to: %f\n", seqg_var->pvName, seqg_var->pvToSet);
 # line 282 "../sncExample.stt"
-			printf("AutoOnOff: %s is set to: %f\n", seqg_var->pvName, seqg_var->pvToSet);
-# line 284 "../sncExample.stt"
 			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:tuneISet3_set", seqg_var->devNo);
-# line 285 "../sncExample.stt"
+# line 283 "../sncExample.stt"
 			seq_pvAssign(seqg_env, 136/*pvToSet*/, seqg_var->pvName);
-# line 286 "../sncExample.stt"
+# line 284 "../sncExample.stt"
 			seq_pvGetTmo(seqg_env, 0/*parameters*/ + (CH_ID)(14), DEFAULT, DEFAULT_TIMEOUT);
-# line 287 "../sncExample.stt"
+# line 285 "../sncExample.stt"
 			seqg_var->pvToSet = seqg_var->parameters[14];
-# line 288 "../sncExample.stt"
+# line 286 "../sncExample.stt"
 			seq_pvPutTmo(seqg_env, 136/*pvToSet*/, DEFAULT, DEFAULT_TIMEOUT);
+# line 287 "../sncExample.stt"
+			printf("AutoOnOff: %s is set to: %f\n", seqg_var->pvName, seqg_var->pvToSet);
 # line 289 "../sncExample.stt"
-			printf("AutoOnOff: %s is set to: %f\n", seqg_var->pvName, seqg_var->pvToSet);
-# line 291 "../sncExample.stt"
 			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:frontBiasSet_set", seqg_var->devNo);
-# line 292 "../sncExample.stt"
+# line 290 "../sncExample.stt"
 			seq_pvAssign(seqg_env, 136/*pvToSet*/, seqg_var->pvName);
-# line 293 "../sncExample.stt"
+# line 291 "../sncExample.stt"
 			seq_pvGetTmo(seqg_env, 0/*parameters*/ + (CH_ID)(15), DEFAULT, DEFAULT_TIMEOUT);
-# line 294 "../sncExample.stt"
+# line 292 "../sncExample.stt"
 			seqg_var->pvToSet = seqg_var->parameters[15];
-# line 295 "../sncExample.stt"
+# line 293 "../sncExample.stt"
 			seq_pvPutTmo(seqg_env, 136/*pvToSet*/, DEFAULT, DEFAULT_TIMEOUT);
+# line 294 "../sncExample.stt"
+			printf("AutoOnOff: %s is set to: %f\n", seqg_var->pvName, seqg_var->pvToSet);
 # line 296 "../sncExample.stt"
-			printf("AutoOnOff: %s is set to: %f\n", seqg_var->pvName, seqg_var->pvToSet);
-# line 298 "../sncExample.stt"
 			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:frontFixTuningAngle_set", seqg_var->devNo);
-# line 299 "../sncExample.stt"
+# line 297 "../sncExample.stt"
 			seq_pvAssign(seqg_env, 136/*pvToSet*/, seqg_var->pvName);
-# line 300 "../sncExample.stt"
+# line 298 "../sncExample.stt"
 			seq_pvGetTmo(seqg_env, 0/*parameters*/ + (CH_ID)(16), DEFAULT, DEFAULT_TIMEOUT);
-# line 301 "../sncExample.stt"
+# line 299 "../sncExample.stt"
 			seqg_var->pvToSet = seqg_var->parameters[16];
-# line 302 "../sncExample.stt"
+# line 300 "../sncExample.stt"
 			seq_pvPutTmo(seqg_env, 136/*pvToSet*/, DEFAULT, DEFAULT_TIMEOUT);
+# line 301 "../sncExample.stt"
+			printf("AutoOnOff: %s is set to: %f\n", seqg_var->pvName, seqg_var->pvToSet);
 # line 303 "../sncExample.stt"
-			printf("AutoOnOff: %s is set to: %f\n", seqg_var->pvName, seqg_var->pvToSet);
-# line 305 "../sncExample.stt"
 			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:frontTunePSet_set", seqg_var->devNo);
-# line 306 "../sncExample.stt"
+# line 304 "../sncExample.stt"
 			seq_pvAssign(seqg_env, 136/*pvToSet*/, seqg_var->pvName);
-# line 307 "../sncExample.stt"
+# line 305 "../sncExample.stt"
 			seq_pvGetTmo(seqg_env, 0/*parameters*/ + (CH_ID)(17), DEFAULT, DEFAULT_TIMEOUT);
-# line 308 "../sncExample.stt"
+# line 306 "../sncExample.stt"
 			seqg_var->pvToSet = seqg_var->parameters[17];
-# line 309 "../sncExample.stt"
+# line 307 "../sncExample.stt"
 			seq_pvPutTmo(seqg_env, 136/*pvToSet*/, DEFAULT, DEFAULT_TIMEOUT);
+# line 308 "../sncExample.stt"
+			printf("AutoOnOff: %s is set to: %f\n", seqg_var->pvName, seqg_var->pvToSet);
 # line 310 "../sncExample.stt"
-			printf("AutoOnOff: %s is set to: %f\n", seqg_var->pvName, seqg_var->pvToSet);
-# line 312 "../sncExample.stt"
 			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:frontTuneISet_set", seqg_var->devNo);
-# line 313 "../sncExample.stt"
+# line 311 "../sncExample.stt"
 			seq_pvAssign(seqg_env, 136/*pvToSet*/, seqg_var->pvName);
-# line 314 "../sncExample.stt"
+# line 312 "../sncExample.stt"
 			seq_pvGetTmo(seqg_env, 0/*parameters*/ + (CH_ID)(18), DEFAULT, DEFAULT_TIMEOUT);
-# line 315 "../sncExample.stt"
+# line 313 "../sncExample.stt"
 			seqg_var->pvToSet = seqg_var->parameters[18];
-# line 316 "../sncExample.stt"
+# line 314 "../sncExample.stt"
 			seq_pvPutTmo(seqg_env, 136/*pvToSet*/, DEFAULT, DEFAULT_TIMEOUT);
+# line 315 "../sncExample.stt"
+			printf("AutoOnOff: %s is set to: %f\n", seqg_var->pvName, seqg_var->pvToSet);
 # line 317 "../sncExample.stt"
-			printf("AutoOnOff: %s is set to: %f\n", seqg_var->pvName, seqg_var->pvToSet);
-# line 319 "../sncExample.stt"
 			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:initial_Phase_set", seqg_var->devNo);
-# line 320 "../sncExample.stt"
+# line 318 "../sncExample.stt"
 			seq_pvAssign(seqg_env, 136/*pvToSet*/, seqg_var->pvName);
-# line 321 "../sncExample.stt"
+# line 319 "../sncExample.stt"
 			seq_pvGetTmo(seqg_env, 0/*parameters*/ + (CH_ID)(19), DEFAULT, DEFAULT_TIMEOUT);
-# line 322 "../sncExample.stt"
+# line 320 "../sncExample.stt"
 			seqg_var->pvToSet = seqg_var->parameters[19];
-# line 323 "../sncExample.stt"
+# line 321 "../sncExample.stt"
 			seq_pvPutTmo(seqg_env, 136/*pvToSet*/, DEFAULT, DEFAULT_TIMEOUT);
+# line 322 "../sncExample.stt"
+			printf("AutoOnOff: %s is set to: %f\n", seqg_var->pvName, seqg_var->pvToSet);
 # line 324 "../sncExample.stt"
-			printf("AutoOnOff: %s is set to: %f\n", seqg_var->pvName, seqg_var->pvToSet);
-# line 326 "../sncExample.stt"
 			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:phase_p_set", seqg_var->devNo);
-# line 327 "../sncExample.stt"
+# line 325 "../sncExample.stt"
 			seq_pvAssign(seqg_env, 136/*pvToSet*/, seqg_var->pvName);
-# line 328 "../sncExample.stt"
+# line 326 "../sncExample.stt"
 			seq_pvGetTmo(seqg_env, 0/*parameters*/ + (CH_ID)(20), DEFAULT, DEFAULT_TIMEOUT);
-# line 329 "../sncExample.stt"
+# line 327 "../sncExample.stt"
 			seqg_var->pvToSet = seqg_var->parameters[20];
-# line 330 "../sncExample.stt"
+# line 328 "../sncExample.stt"
 			seq_pvPutTmo(seqg_env, 136/*pvToSet*/, DEFAULT, DEFAULT_TIMEOUT);
+# line 329 "../sncExample.stt"
+			printf("AutoOnOff: %s is set to: %f\n", seqg_var->pvName, seqg_var->pvToSet);
 # line 331 "../sncExample.stt"
-			printf("AutoOnOff: %s is set to: %f\n", seqg_var->pvName, seqg_var->pvToSet);
-# line 333 "../sncExample.stt"
 			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:phase_i_set", seqg_var->devNo);
-# line 334 "../sncExample.stt"
+# line 332 "../sncExample.stt"
 			seq_pvAssign(seqg_env, 136/*pvToSet*/, seqg_var->pvName);
-# line 335 "../sncExample.stt"
+# line 333 "../sncExample.stt"
 			seq_pvGetTmo(seqg_env, 0/*parameters*/ + (CH_ID)(21), DEFAULT, DEFAULT_TIMEOUT);
-# line 336 "../sncExample.stt"
+# line 334 "../sncExample.stt"
 			seqg_var->pvToSet = seqg_var->parameters[21];
-# line 337 "../sncExample.stt"
+# line 335 "../sncExample.stt"
 			seq_pvPutTmo(seqg_env, 136/*pvToSet*/, DEFAULT, DEFAULT_TIMEOUT);
-# line 338 "../sncExample.stt"
+# line 336 "../sncExample.stt"
 			printf("AutoOnOff: %s is set to: %f\n", seqg_var->pvName, seqg_var->pvToSet);
-# line 340 "../sncExample.stt"
+# line 338 "../sncExample.stt"
 			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:pointSweep_set", seqg_var->devNo);
+# line 339 "../sncExample.stt"
+			seq_pvAssign(seqg_env, 137/*pvToSwitch*/, seqg_var->pvName);
+# line 340 "../sncExample.stt"
+			seqg_var->pvToSwitch = 1;
 # line 341 "../sncExample.stt"
-			seq_pvAssign(seqg_env, 137/*pvToSwitch*/, seqg_var->pvName);
+			seq_pvPutTmo(seqg_env, 137/*pvToSwitch*/, DEFAULT, DEFAULT_TIMEOUT);
 # line 342 "../sncExample.stt"
-			seqg_var->pvToSwitch = 1;
-# line 343 "../sncExample.stt"
-			seq_pvPutTmo(seqg_env, 137/*pvToSwitch*/, DEFAULT, DEFAULT_TIMEOUT);
+			printf("AutoOnOff: %s is set to: %d\n", seqg_var->pvName, seqg_var->pvToSwitch);
 # line 344 "../sncExample.stt"
-			printf("AutoOnOff: %s is set to: %d\n", seqg_var->pvName, seqg_var->pvToSwitch);
-# line 346 "../sncExample.stt"
 			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:sweepOption_set", seqg_var->devNo);
+# line 345 "../sncExample.stt"
+			seq_pvAssign(seqg_env, 137/*pvToSwitch*/, seqg_var->pvName);
+# line 346 "../sncExample.stt"
+			seqg_var->pvToSwitch = 1;
 # line 347 "../sncExample.stt"
-			seq_pvAssign(seqg_env, 137/*pvToSwitch*/, seqg_var->pvName);
+			seq_pvPutTmo(seqg_env, 137/*pvToSwitch*/, DEFAULT, DEFAULT_TIMEOUT);
 # line 348 "../sncExample.stt"
-			seqg_var->pvToSwitch = 1;
-# line 349 "../sncExample.stt"
-			seq_pvPutTmo(seqg_env, 137/*pvToSwitch*/, DEFAULT, DEFAULT_TIMEOUT);
+			printf("AutoOnOff: %s is set to: %d\n", seqg_var->pvName, seqg_var->pvToSwitch);
 # line 350 "../sncExample.stt"
-			printf("AutoOnOff: %s is set to: %d\n", seqg_var->pvName, seqg_var->pvToSwitch);
-# line 352 "../sncExample.stt"
 			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:intEnable_set", seqg_var->devNo);
+# line 351 "../sncExample.stt"
+			seq_pvAssign(seqg_env, 137/*pvToSwitch*/, seqg_var->pvName);
+# line 352 "../sncExample.stt"
+			seqg_var->pvToSwitch = 1;
 # line 353 "../sncExample.stt"
-			seq_pvAssign(seqg_env, 137/*pvToSwitch*/, seqg_var->pvName);
+			seq_pvPutTmo(seqg_env, 137/*pvToSwitch*/, DEFAULT, DEFAULT_TIMEOUT);
 # line 354 "../sncExample.stt"
-			seqg_var->pvToSwitch = 1;
-# line 355 "../sncExample.stt"
-			seq_pvPutTmo(seqg_env, 137/*pvToSwitch*/, DEFAULT, DEFAULT_TIMEOUT);
+			printf("AutoOnOff: %s is set to: %d\n", seqg_var->pvName, seqg_var->pvToSwitch);
 # line 356 "../sncExample.stt"
-			printf("AutoOnOff: %s is set to: %d\n", seqg_var->pvName, seqg_var->pvToSwitch);
-# line 358 "../sncExample.stt"
 			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:sgMode_set", seqg_var->devNo);
+# line 357 "../sncExample.stt"
+			seq_pvAssign(seqg_env, 137/*pvToSwitch*/, seqg_var->pvName);
+# line 358 "../sncExample.stt"
+			seqg_var->pvToSwitch = 1;
 # line 359 "../sncExample.stt"
-			seq_pvAssign(seqg_env, 137/*pvToSwitch*/, seqg_var->pvName);
+			seq_pvPutTmo(seqg_env, 137/*pvToSwitch*/, DEFAULT, DEFAULT_TIMEOUT);
 # line 360 "../sncExample.stt"
-			seqg_var->pvToSwitch = 1;
-# line 361 "../sncExample.stt"
-			seq_pvPutTmo(seqg_env, 137/*pvToSwitch*/, DEFAULT, DEFAULT_TIMEOUT);
+			printf("AutoOnOff: %s is set to: %d\n", seqg_var->pvName, seqg_var->pvToSwitch);
 # line 362 "../sncExample.stt"
-			printf("AutoOnOff: %s is set to: %d\n", seqg_var->pvName, seqg_var->pvToSwitch);
-# line 364 "../sncExample.stt"
 			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:ampOption_set", seqg_var->devNo);
+# line 363 "../sncExample.stt"
+			seq_pvAssign(seqg_env, 137/*pvToSwitch*/, seqg_var->pvName);
+# line 364 "../sncExample.stt"
+			seqg_var->pvToSwitch = 0;
 # line 365 "../sncExample.stt"
-			seq_pvAssign(seqg_env, 137/*pvToSwitch*/, seqg_var->pvName);
+			seq_pvPutTmo(seqg_env, 137/*pvToSwitch*/, DEFAULT, DEFAULT_TIMEOUT);
 # line 366 "../sncExample.stt"
-			seqg_var->pvToSwitch = 0;
-# line 367 "../sncExample.stt"
-			seq_pvPutTmo(seqg_env, 137/*pvToSwitch*/, DEFAULT, DEFAULT_TIMEOUT);
+			printf("AutoOnOff: %s is set to: %d\n", seqg_var->pvName, seqg_var->pvToSwitch);
 # line 368 "../sncExample.stt"
-			printf("AutoOnOff: %s is set to: %d\n", seqg_var->pvName, seqg_var->pvToSwitch);
-# line 370 "../sncExample.stt"
 			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:ampFFOption_set", seqg_var->devNo);
+# line 369 "../sncExample.stt"
+			seq_pvAssign(seqg_env, 137/*pvToSwitch*/, seqg_var->pvName);
+# line 370 "../sncExample.stt"
+			seqg_var->pvToSwitch = 0;
 # line 371 "../sncExample.stt"
-			seq_pvAssign(seqg_env, 137/*pvToSwitch*/, seqg_var->pvName);
+			seq_pvPutTmo(seqg_env, 137/*pvToSwitch*/, DEFAULT, DEFAULT_TIMEOUT);
 # line 372 "../sncExample.stt"
-			seqg_var->pvToSwitch = 0;
-# line 373 "../sncExample.stt"
-			seq_pvPutTmo(seqg_env, 137/*pvToSwitch*/, DEFAULT, DEFAULT_TIMEOUT);
+			printf("AutoOnOff: %s is set to: %d\n", seqg_var->pvName, seqg_var->pvToSwitch);
 # line 374 "../sncExample.stt"
-			printf("AutoOnOff: %s is set to: %d\n", seqg_var->pvName, seqg_var->pvToSwitch);
-# line 376 "../sncExample.stt"
 			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:ampModifyOption_set", seqg_var->devNo);
+# line 375 "../sncExample.stt"
+			seq_pvAssign(seqg_env, 137/*pvToSwitch*/, seqg_var->pvName);
+# line 376 "../sncExample.stt"
+			seqg_var->pvToSwitch = 0;
 # line 377 "../sncExample.stt"
-			seq_pvAssign(seqg_env, 137/*pvToSwitch*/, seqg_var->pvName);
+			seq_pvPutTmo(seqg_env, 137/*pvToSwitch*/, DEFAULT, DEFAULT_TIMEOUT);
 # line 378 "../sncExample.stt"
-			seqg_var->pvToSwitch = 0;
-# line 379 "../sncExample.stt"
-			seq_pvPutTmo(seqg_env, 137/*pvToSwitch*/, DEFAULT, DEFAULT_TIMEOUT);
+			printf("AutoOnOff: %s is set to: %d\n", seqg_var->pvName, seqg_var->pvToSwitch);
 # line 380 "../sncExample.stt"
-			printf("AutoOnOff: %s is set to: %d\n", seqg_var->pvName, seqg_var->pvToSwitch);
-# line 382 "../sncExample.stt"
 			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:tuneOption_set", seqg_var->devNo);
+# line 381 "../sncExample.stt"
+			seq_pvAssign(seqg_env, 137/*pvToSwitch*/, seqg_var->pvName);
+# line 382 "../sncExample.stt"
+			seqg_var->pvToSwitch = 0;
 # line 383 "../sncExample.stt"
-			seq_pvAssign(seqg_env, 137/*pvToSwitch*/, seqg_var->pvName);
+			seq_pvPutTmo(seqg_env, 137/*pvToSwitch*/, DEFAULT, DEFAULT_TIMEOUT);
 # line 384 "../sncExample.stt"
-			seqg_var->pvToSwitch = 0;
-# line 385 "../sncExample.stt"
-			seq_pvPutTmo(seqg_env, 137/*pvToSwitch*/, DEFAULT, DEFAULT_TIMEOUT);
+			printf("AutoOnOff: %s is set to: %d\n", seqg_var->pvName, seqg_var->pvToSwitch);
 # line 386 "../sncExample.stt"
-			printf("AutoOnOff: %s is set to: %d\n", seqg_var->pvName, seqg_var->pvToSwitch);
-# line 388 "../sncExample.stt"
 			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:tuneFFOption_set", seqg_var->devNo);
+# line 387 "../sncExample.stt"
+			seq_pvAssign(seqg_env, 137/*pvToSwitch*/, seqg_var->pvName);
+# line 388 "../sncExample.stt"
+			seqg_var->pvToSwitch = 0;
 # line 389 "../sncExample.stt"
-			seq_pvAssign(seqg_env, 137/*pvToSwitch*/, seqg_var->pvName);
+			seq_pvPutTmo(seqg_env, 137/*pvToSwitch*/, DEFAULT, DEFAULT_TIMEOUT);
 # line 390 "../sncExample.stt"
-			seqg_var->pvToSwitch = 0;
-# line 391 "../sncExample.stt"
-			seq_pvPutTmo(seqg_env, 137/*pvToSwitch*/, DEFAULT, DEFAULT_TIMEOUT);
+			printf("AutoOnOff: %s is set to: %d\n", seqg_var->pvName, seqg_var->pvToSwitch);
 # line 392 "../sncExample.stt"
-			printf("AutoOnOff: %s is set to: %d\n", seqg_var->pvName, seqg_var->pvToSwitch);
-# line 394 "../sncExample.stt"
 			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:tuneModifyOption_set", seqg_var->devNo);
+# line 393 "../sncExample.stt"
+			seq_pvAssign(seqg_env, 137/*pvToSwitch*/, seqg_var->pvName);
+# line 394 "../sncExample.stt"
+			seqg_var->pvToSwitch = 0;
 # line 395 "../sncExample.stt"
-			seq_pvAssign(seqg_env, 137/*pvToSwitch*/, seqg_var->pvName);
+			seq_pvPutTmo(seqg_env, 137/*pvToSwitch*/, DEFAULT, DEFAULT_TIMEOUT);
 # line 396 "../sncExample.stt"
-			seqg_var->pvToSwitch = 0;
-# line 397 "../sncExample.stt"
-			seq_pvPutTmo(seqg_env, 137/*pvToSwitch*/, DEFAULT, DEFAULT_TIMEOUT);
+			printf("AutoOnOff: %s is set to: %d\n", seqg_var->pvName, seqg_var->pvToSwitch);
 # line 398 "../sncExample.stt"
-			printf("AutoOnOff: %s is set to: %d\n", seqg_var->pvName, seqg_var->pvToSwitch);
-# line 400 "../sncExample.stt"
 			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:frontTuneOption_set", seqg_var->devNo);
+# line 399 "../sncExample.stt"
+			seq_pvAssign(seqg_env, 137/*pvToSwitch*/, seqg_var->pvName);
+# line 400 "../sncExample.stt"
+			seqg_var->pvToSwitch = 0;
 # line 401 "../sncExample.stt"
-			seq_pvAssign(seqg_env, 137/*pvToSwitch*/, seqg_var->pvName);
+			seq_pvPutTmo(seqg_env, 137/*pvToSwitch*/, DEFAULT, DEFAULT_TIMEOUT);
 # line 402 "../sncExample.stt"
-			seqg_var->pvToSwitch = 0;
-# line 403 "../sncExample.stt"
-			seq_pvPutTmo(seqg_env, 137/*pvToSwitch*/, DEFAULT, DEFAULT_TIMEOUT);
+			printf("AutoOnOff: %s is set to: %d\n", seqg_var->pvName, seqg_var->pvToSwitch);
 # line 404 "../sncExample.stt"
-			printf("AutoOnOff: %s is set to: %d\n", seqg_var->pvName, seqg_var->pvToSwitch);
-# line 406 "../sncExample.stt"
 			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:phaseOption_set", seqg_var->devNo);
+# line 405 "../sncExample.stt"
+			seq_pvAssign(seqg_env, 137/*pvToSwitch*/, seqg_var->pvName);
+# line 406 "../sncExample.stt"
+			seqg_var->pvToSwitch = 0;
 # line 407 "../sncExample.stt"
-			seq_pvAssign(seqg_env, 137/*pvToSwitch*/, seqg_var->pvName);
+			seq_pvPutTmo(seqg_env, 137/*pvToSwitch*/, DEFAULT, DEFAULT_TIMEOUT);
 # line 408 "../sncExample.stt"
-			seqg_var->pvToSwitch = 0;
-# line 409 "../sncExample.stt"
-			seq_pvPutTmo(seqg_env, 137/*pvToSwitch*/, DEFAULT, DEFAULT_TIMEOUT);
+			printf("AutoOnOff: %s is set to: %d\n", seqg_var->pvName, seqg_var->pvToSwitch);
 # line 410 "../sncExample.stt"
-			printf("AutoOnOff: %s is set to: %d\n", seqg_var->pvName, seqg_var->pvToSwitch);
-# line 412 "../sncExample.stt"
 			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:phaseFFOption_set", seqg_var->devNo);
+# line 411 "../sncExample.stt"
+			seq_pvAssign(seqg_env, 137/*pvToSwitch*/, seqg_var->pvName);
+# line 412 "../sncExample.stt"
+			seqg_var->pvToSwitch = 0;
 # line 413 "../sncExample.stt"
-			seq_pvAssign(seqg_env, 137/*pvToSwitch*/, seqg_var->pvName);
+			seq_pvPutTmo(seqg_env, 137/*pvToSwitch*/, DEFAULT, DEFAULT_TIMEOUT);
 # line 414 "../sncExample.stt"
-			seqg_var->pvToSwitch = 0;
-# line 415 "../sncExample.stt"
-			seq_pvPutTmo(seqg_env, 137/*pvToSwitch*/, DEFAULT, DEFAULT_TIMEOUT);
+			printf("AutoOnOff: %s is set to: %d\n", seqg_var->pvName, seqg_var->pvToSwitch);
 # line 416 "../sncExample.stt"
-			printf("AutoOnOff: %s is set to: %d\n", seqg_var->pvName, seqg_var->pvToSwitch);
-# line 418 "../sncExample.stt"
 			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:phaseModifyOption_set", seqg_var->devNo);
-# line 419 "../sncExample.stt"
+# line 417 "../sncExample.stt"
 			seq_pvAssign(seqg_env, 137/*pvToSwitch*/, seqg_var->pvName);
-# line 420 "../sncExample.stt"
+# line 418 "../sncExample.stt"
 			seqg_var->pvToSwitch = 0;
-# line 421 "../sncExample.stt"
+# line 419 "../sncExample.stt"
 			seq_pvPutTmo(seqg_env, 137/*pvToSwitch*/, DEFAULT, DEFAULT_TIMEOUT);
+# line 420 "../sncExample.stt"
+			printf("AutoOnOff: %s is set to: %d\n", seqg_var->pvName, seqg_var->pvToSwitch);
 # line 422 "../sncExample.stt"
-			printf("AutoOnOff: %s is set to: %d\n", seqg_var->pvName, seqg_var->pvToSwitch);
+			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:rfReset_set", seqg_var->devNo);
+# line 423 "../sncExample.stt"
+			seq_pvAssign(seqg_env, 137/*pvToSwitch*/, seqg_var->pvName);
 # line 424 "../sncExample.stt"
-			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:rfReset_set", seqg_var->devNo);
+			seqg_var->pvToSwitch = 1;
 # line 425 "../sncExample.stt"
-			seq_pvAssign(seqg_env, 137/*pvToSwitch*/, seqg_var->pvName);
+			seq_pvPutTmo(seqg_env, 137/*pvToSwitch*/, DEFAULT, DEFAULT_TIMEOUT);
 # line 426 "../sncExample.stt"
-			seqg_var->pvToSwitch = 1;
-# line 427 "../sncExample.stt"
-			seq_pvPutTmo(seqg_env, 137/*pvToSwitch*/, DEFAULT, DEFAULT_TIMEOUT);
+			printf("AutoOnOff: %s is set to: %d\n", seqg_var->pvName, seqg_var->pvToSwitch);
 # line 428 "../sncExample.stt"
-			printf("AutoOnOff: %s is set to: %d\n", seqg_var->pvName, seqg_var->pvToSwitch);
+			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:drvReset_set", seqg_var->devNo);
+# line 429 "../sncExample.stt"
+			seq_pvAssign(seqg_env, 137/*pvToSwitch*/, seqg_var->pvName);
 # line 430 "../sncExample.stt"
-			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:drvReset_set", seqg_var->devNo);
+			seqg_var->pvToSwitch = 1;
 # line 431 "../sncExample.stt"
-			seq_pvAssign(seqg_env, 137/*pvToSwitch*/, seqg_var->pvName);
+			seq_pvPutTmo(seqg_env, 137/*pvToSwitch*/, DEFAULT, DEFAULT_TIMEOUT);
 # line 432 "../sncExample.stt"
-			seqg_var->pvToSwitch = 1;
-# line 433 "../sncExample.stt"
-			seq_pvPutTmo(seqg_env, 137/*pvToSwitch*/, DEFAULT, DEFAULT_TIMEOUT);
+			printf("AutoOnOff: %s is set to: %d\n", seqg_var->pvName, seqg_var->pvToSwitch);
 # line 434 "../sncExample.stt"
-			printf("AutoOnOff: %s is set to: %d\n", seqg_var->pvName, seqg_var->pvToSwitch);
-# line 436 "../sncExample.stt"
 			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:rfReset_set", seqg_var->devNo);
+# line 435 "../sncExample.stt"
+			seq_pvAssign(seqg_env, 137/*pvToSwitch*/, seqg_var->pvName);
+# line 436 "../sncExample.stt"
+			seqg_var->pvToSwitch = 1;
 # line 437 "../sncExample.stt"
-			seq_pvAssign(seqg_env, 137/*pvToSwitch*/, seqg_var->pvName);
+			seq_pvPutTmo(seqg_env, 137/*pvToSwitch*/, DEFAULT, DEFAULT_TIMEOUT);
 # line 438 "../sncExample.stt"
-			seqg_var->pvToSwitch = 1;
-# line 439 "../sncExample.stt"
-			seq_pvPutTmo(seqg_env, 137/*pvToSwitch*/, DEFAULT, DEFAULT_TIMEOUT);
+			printf("AutoOnOff: %s is set to: %d\n", seqg_var->pvName, seqg_var->pvToSwitch);
 # line 440 "../sncExample.stt"
-			printf("AutoOnOff: %s is set to: %d\n", seqg_var->pvName, seqg_var->pvToSwitch);
-# line 442 "../sncExample.stt"
 			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:drvReset_set", seqg_var->devNo);
-# line 443 "../sncExample.stt"
+# line 441 "../sncExample.stt"
 			seq_pvAssign(seqg_env, 137/*pvToSwitch*/, seqg_var->pvName);
-# line 444 "../sncExample.stt"
+# line 442 "../sncExample.stt"
 			seqg_var->pvToSwitch = 1;
-# line 445 "../sncExample.stt"
+# line 443 "../sncExample.stt"
 			seq_pvPutTmo(seqg_env, 137/*pvToSwitch*/, DEFAULT, DEFAULT_TIMEOUT);
-# line 446 "../sncExample.stt"
+# line 444 "../sncExample.stt"
 			printf("AutoOnOff: %s is set to: %d\n", seqg_var->pvName, seqg_var->pvToSwitch);
-# line 448 "../sncExample.stt"
+# line 446 "../sncExample.stt"
 			printf("AutoOnOff: On Init System: End\n");
 		}
 		return;
@@ -582,60 +587,67 @@ static void seqg_action_ssOnOff_0_OnInit(SS_ID seqg_env, int seqg_trn, int *seqg
 /* Event function for state "OnInit2" in state set "ssOnOff" */
 static seqBool seqg_event_ssOnOff_0_OnInit2(SS_ID seqg_env, int *seqg_ptrn, int *seqg_pnst)
 {
-# line 452 "../sncExample.stt"
-	if (seqg_var->devNo == 1)
+# line 450 "../sncExample.stt"
+	if (seqg_var->statusFlag == 10)
 	{
-		*seqg_pnst = 3;
+		*seqg_pnst = 0;
 		*seqg_ptrn = 0;
 		return TRUE;
 	}
-# line 454 "../sncExample.stt"
-	if (seqg_var->devNo == 2)
+# line 455 "../sncExample.stt"
+	if (seqg_var->devNo == 1)
 	{
 		*seqg_pnst = 3;
 		*seqg_ptrn = 1;
 		return TRUE;
 	}
-# line 468 "../sncExample.stt"
-	if (seqg_var->devNo == 3)
+# line 457 "../sncExample.stt"
+	if (seqg_var->devNo == 2)
 	{
 		*seqg_pnst = 3;
 		*seqg_ptrn = 2;
 		return TRUE;
 	}
-# line 482 "../sncExample.stt"
-	if (seqg_var->devNo == 4)
+# line 471 "../sncExample.stt"
+	if (seqg_var->devNo == 3)
 	{
 		*seqg_pnst = 3;
 		*seqg_ptrn = 3;
 		return TRUE;
 	}
-# line 496 "../sncExample.stt"
-	if (seqg_var->devNo == 5)
+# line 485 "../sncExample.stt"
+	if (seqg_var->devNo == 4)
 	{
 		*seqg_pnst = 3;
 		*seqg_ptrn = 4;
 		return TRUE;
 	}
-# line 510 "../sncExample.stt"
-	if (seqg_var->devNo == 6)
+# line 499 "../sncExample.stt"
+	if (seqg_var->devNo == 5)
 	{
 		*seqg_pnst = 3;
 		*seqg_ptrn = 5;
 		return TRUE;
 	}
-# line 524 "../sncExample.stt"
-	if (seqg_var->devNo == 7)
+# line 513 "../sncExample.stt"
+	if (seqg_var->devNo == 6)
 	{
 		*seqg_pnst = 3;
 		*seqg_ptrn = 6;
 		return TRUE;
 	}
-# line 538 "../sncExample.stt"
-	if (seqg_var->devNo == 8)
+# line 527 "../sncExample.stt"
+	if (seqg_var->devNo == 7)
 	{
 		*seqg_pnst = 3;
 		*seqg_ptrn = 7;
+		return TRUE;
+	}
+# line 541 "../sncExample.stt"
+	if (seqg_var->devNo == 8)
+	{
+		*seqg_pnst = 3;
+		*seqg_ptrn = 8;
 		return TRUE;
 	}
 	return FALSE;
@@ -648,201 +660,211 @@ static void seqg_action_ssOnOff_0_OnInit2(SS_ID seqg_env, int seqg_trn, int *seq
 	{
 	case 0:
 		{
+# line 451 "../sncExample.stt"
+			printf("AutoOnOff: Turn On System: Interrupt!!!\n");
+# line 452 "../sncExample.stt"
+			sprintf(seqg_var->logMsg, "rcsRf%d: Turn On Interrupt!!!", seqg_var->devNo);
+# line 453 "../sncExample.stt"
+			seq_pvPutTmo(seqg_env, 132/*logMsg*/, DEFAULT, DEFAULT_TIMEOUT);
 		}
 		return;
 	case 1:
 		{
-# line 455 "../sncExample.stt"
-			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:biasSet_set", seqg_var->devNo);
-# line 456 "../sncExample.stt"
-			seq_pvAssign(seqg_env, 136/*pvToSet*/, seqg_var->pvName);
-# line 457 "../sncExample.stt"
-			seq_pvGetTmo(seqg_env, 0/*parameters*/ + (CH_ID)(22), DEFAULT, DEFAULT_TIMEOUT);
-# line 458 "../sncExample.stt"
-			seqg_var->pvToSet = seqg_var->parameters[22];
-# line 459 "../sncExample.stt"
-			seq_pvPutTmo(seqg_env, 136/*pvToSet*/, DEFAULT, DEFAULT_TIMEOUT);
-# line 460 "../sncExample.stt"
-			printf("AutoOnOff: %s is set to: %f\n", seqg_var->pvName, seqg_var->pvToSet);
-# line 461 "../sncExample.stt"
-			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:frontBiasSet_set", seqg_var->devNo);
-# line 462 "../sncExample.stt"
-			seq_pvAssign(seqg_env, 136/*pvToSet*/, seqg_var->pvName);
-# line 463 "../sncExample.stt"
-			seq_pvGetTmo(seqg_env, 0/*parameters*/ + (CH_ID)(23), DEFAULT, DEFAULT_TIMEOUT);
-# line 464 "../sncExample.stt"
-			seqg_var->pvToSet = seqg_var->parameters[23];
-# line 465 "../sncExample.stt"
-			seq_pvPutTmo(seqg_env, 136/*pvToSet*/, DEFAULT, DEFAULT_TIMEOUT);
-# line 466 "../sncExample.stt"
-			printf("AutoOnOff: %s is set to: %f\n", seqg_var->pvName, seqg_var->pvToSet);
 		}
 		return;
 	case 2:
 		{
-# line 469 "../sncExample.stt"
+# line 458 "../sncExample.stt"
 			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:biasSet_set", seqg_var->devNo);
-# line 470 "../sncExample.stt"
+# line 459 "../sncExample.stt"
 			seq_pvAssign(seqg_env, 136/*pvToSet*/, seqg_var->pvName);
-# line 471 "../sncExample.stt"
-			seq_pvGetTmo(seqg_env, 0/*parameters*/ + (CH_ID)(24), DEFAULT, DEFAULT_TIMEOUT);
-# line 472 "../sncExample.stt"
-			seqg_var->pvToSet = seqg_var->parameters[24];
-# line 473 "../sncExample.stt"
+# line 460 "../sncExample.stt"
+			seq_pvGetTmo(seqg_env, 0/*parameters*/ + (CH_ID)(22), DEFAULT, DEFAULT_TIMEOUT);
+# line 461 "../sncExample.stt"
+			seqg_var->pvToSet = seqg_var->parameters[22];
+# line 462 "../sncExample.stt"
 			seq_pvPutTmo(seqg_env, 136/*pvToSet*/, DEFAULT, DEFAULT_TIMEOUT);
-# line 474 "../sncExample.stt"
+# line 463 "../sncExample.stt"
 			printf("AutoOnOff: %s is set to: %f\n", seqg_var->pvName, seqg_var->pvToSet);
-# line 475 "../sncExample.stt"
+# line 464 "../sncExample.stt"
 			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:frontBiasSet_set", seqg_var->devNo);
-# line 476 "../sncExample.stt"
+# line 465 "../sncExample.stt"
 			seq_pvAssign(seqg_env, 136/*pvToSet*/, seqg_var->pvName);
-# line 477 "../sncExample.stt"
-			seq_pvGetTmo(seqg_env, 0/*parameters*/ + (CH_ID)(25), DEFAULT, DEFAULT_TIMEOUT);
-# line 478 "../sncExample.stt"
-			seqg_var->pvToSet = seqg_var->parameters[25];
-# line 479 "../sncExample.stt"
+# line 466 "../sncExample.stt"
+			seq_pvGetTmo(seqg_env, 0/*parameters*/ + (CH_ID)(23), DEFAULT, DEFAULT_TIMEOUT);
+# line 467 "../sncExample.stt"
+			seqg_var->pvToSet = seqg_var->parameters[23];
+# line 468 "../sncExample.stt"
 			seq_pvPutTmo(seqg_env, 136/*pvToSet*/, DEFAULT, DEFAULT_TIMEOUT);
-# line 480 "../sncExample.stt"
+# line 469 "../sncExample.stt"
 			printf("AutoOnOff: %s is set to: %f\n", seqg_var->pvName, seqg_var->pvToSet);
 		}
 		return;
 	case 3:
 		{
-# line 483 "../sncExample.stt"
+# line 472 "../sncExample.stt"
 			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:biasSet_set", seqg_var->devNo);
-# line 484 "../sncExample.stt"
+# line 473 "../sncExample.stt"
 			seq_pvAssign(seqg_env, 136/*pvToSet*/, seqg_var->pvName);
-# line 485 "../sncExample.stt"
-			seq_pvGetTmo(seqg_env, 0/*parameters*/ + (CH_ID)(26), DEFAULT, DEFAULT_TIMEOUT);
-# line 486 "../sncExample.stt"
-			seqg_var->pvToSet = seqg_var->parameters[26];
-# line 487 "../sncExample.stt"
+# line 474 "../sncExample.stt"
+			seq_pvGetTmo(seqg_env, 0/*parameters*/ + (CH_ID)(24), DEFAULT, DEFAULT_TIMEOUT);
+# line 475 "../sncExample.stt"
+			seqg_var->pvToSet = seqg_var->parameters[24];
+# line 476 "../sncExample.stt"
 			seq_pvPutTmo(seqg_env, 136/*pvToSet*/, DEFAULT, DEFAULT_TIMEOUT);
-# line 488 "../sncExample.stt"
+# line 477 "../sncExample.stt"
 			printf("AutoOnOff: %s is set to: %f\n", seqg_var->pvName, seqg_var->pvToSet);
-# line 489 "../sncExample.stt"
+# line 478 "../sncExample.stt"
 			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:frontBiasSet_set", seqg_var->devNo);
-# line 490 "../sncExample.stt"
+# line 479 "../sncExample.stt"
 			seq_pvAssign(seqg_env, 136/*pvToSet*/, seqg_var->pvName);
-# line 491 "../sncExample.stt"
-			seq_pvGetTmo(seqg_env, 0/*parameters*/ + (CH_ID)(27), DEFAULT, DEFAULT_TIMEOUT);
-# line 492 "../sncExample.stt"
-			seqg_var->pvToSet = seqg_var->parameters[27];
-# line 493 "../sncExample.stt"
+# line 480 "../sncExample.stt"
+			seq_pvGetTmo(seqg_env, 0/*parameters*/ + (CH_ID)(25), DEFAULT, DEFAULT_TIMEOUT);
+# line 481 "../sncExample.stt"
+			seqg_var->pvToSet = seqg_var->parameters[25];
+# line 482 "../sncExample.stt"
 			seq_pvPutTmo(seqg_env, 136/*pvToSet*/, DEFAULT, DEFAULT_TIMEOUT);
-# line 494 "../sncExample.stt"
+# line 483 "../sncExample.stt"
 			printf("AutoOnOff: %s is set to: %f\n", seqg_var->pvName, seqg_var->pvToSet);
 		}
 		return;
 	case 4:
 		{
-# line 497 "../sncExample.stt"
+# line 486 "../sncExample.stt"
 			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:biasSet_set", seqg_var->devNo);
-# line 498 "../sncExample.stt"
+# line 487 "../sncExample.stt"
 			seq_pvAssign(seqg_env, 136/*pvToSet*/, seqg_var->pvName);
-# line 499 "../sncExample.stt"
-			seq_pvGetTmo(seqg_env, 0/*parameters*/ + (CH_ID)(28), DEFAULT, DEFAULT_TIMEOUT);
-# line 500 "../sncExample.stt"
-			seqg_var->pvToSet = seqg_var->parameters[28];
-# line 501 "../sncExample.stt"
+# line 488 "../sncExample.stt"
+			seq_pvGetTmo(seqg_env, 0/*parameters*/ + (CH_ID)(26), DEFAULT, DEFAULT_TIMEOUT);
+# line 489 "../sncExample.stt"
+			seqg_var->pvToSet = seqg_var->parameters[26];
+# line 490 "../sncExample.stt"
 			seq_pvPutTmo(seqg_env, 136/*pvToSet*/, DEFAULT, DEFAULT_TIMEOUT);
-# line 502 "../sncExample.stt"
+# line 491 "../sncExample.stt"
 			printf("AutoOnOff: %s is set to: %f\n", seqg_var->pvName, seqg_var->pvToSet);
-# line 503 "../sncExample.stt"
+# line 492 "../sncExample.stt"
 			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:frontBiasSet_set", seqg_var->devNo);
-# line 504 "../sncExample.stt"
+# line 493 "../sncExample.stt"
 			seq_pvAssign(seqg_env, 136/*pvToSet*/, seqg_var->pvName);
-# line 505 "../sncExample.stt"
-			seq_pvGetTmo(seqg_env, 0/*parameters*/ + (CH_ID)(29), DEFAULT, DEFAULT_TIMEOUT);
-# line 506 "../sncExample.stt"
-			seqg_var->pvToSet = seqg_var->parameters[29];
-# line 507 "../sncExample.stt"
+# line 494 "../sncExample.stt"
+			seq_pvGetTmo(seqg_env, 0/*parameters*/ + (CH_ID)(27), DEFAULT, DEFAULT_TIMEOUT);
+# line 495 "../sncExample.stt"
+			seqg_var->pvToSet = seqg_var->parameters[27];
+# line 496 "../sncExample.stt"
 			seq_pvPutTmo(seqg_env, 136/*pvToSet*/, DEFAULT, DEFAULT_TIMEOUT);
-# line 508 "../sncExample.stt"
+# line 497 "../sncExample.stt"
 			printf("AutoOnOff: %s is set to: %f\n", seqg_var->pvName, seqg_var->pvToSet);
 		}
 		return;
 	case 5:
 		{
-# line 511 "../sncExample.stt"
+# line 500 "../sncExample.stt"
 			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:biasSet_set", seqg_var->devNo);
-# line 512 "../sncExample.stt"
+# line 501 "../sncExample.stt"
 			seq_pvAssign(seqg_env, 136/*pvToSet*/, seqg_var->pvName);
-# line 513 "../sncExample.stt"
-			seq_pvGetTmo(seqg_env, 0/*parameters*/ + (CH_ID)(30), DEFAULT, DEFAULT_TIMEOUT);
-# line 514 "../sncExample.stt"
-			seqg_var->pvToSet = seqg_var->parameters[30];
-# line 515 "../sncExample.stt"
+# line 502 "../sncExample.stt"
+			seq_pvGetTmo(seqg_env, 0/*parameters*/ + (CH_ID)(28), DEFAULT, DEFAULT_TIMEOUT);
+# line 503 "../sncExample.stt"
+			seqg_var->pvToSet = seqg_var->parameters[28];
+# line 504 "../sncExample.stt"
 			seq_pvPutTmo(seqg_env, 136/*pvToSet*/, DEFAULT, DEFAULT_TIMEOUT);
-# line 516 "../sncExample.stt"
+# line 505 "../sncExample.stt"
 			printf("AutoOnOff: %s is set to: %f\n", seqg_var->pvName, seqg_var->pvToSet);
-# line 517 "../sncExample.stt"
+# line 506 "../sncExample.stt"
 			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:frontBiasSet_set", seqg_var->devNo);
-# line 518 "../sncExample.stt"
+# line 507 "../sncExample.stt"
 			seq_pvAssign(seqg_env, 136/*pvToSet*/, seqg_var->pvName);
-# line 519 "../sncExample.stt"
-			seq_pvGetTmo(seqg_env, 0/*parameters*/ + (CH_ID)(31), DEFAULT, DEFAULT_TIMEOUT);
-# line 520 "../sncExample.stt"
-			seqg_var->pvToSet = seqg_var->parameters[31];
-# line 521 "../sncExample.stt"
+# line 508 "../sncExample.stt"
+			seq_pvGetTmo(seqg_env, 0/*parameters*/ + (CH_ID)(29), DEFAULT, DEFAULT_TIMEOUT);
+# line 509 "../sncExample.stt"
+			seqg_var->pvToSet = seqg_var->parameters[29];
+# line 510 "../sncExample.stt"
 			seq_pvPutTmo(seqg_env, 136/*pvToSet*/, DEFAULT, DEFAULT_TIMEOUT);
-# line 522 "../sncExample.stt"
+# line 511 "../sncExample.stt"
 			printf("AutoOnOff: %s is set to: %f\n", seqg_var->pvName, seqg_var->pvToSet);
 		}
 		return;
 	case 6:
 		{
-# line 525 "../sncExample.stt"
+# line 514 "../sncExample.stt"
 			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:biasSet_set", seqg_var->devNo);
-# line 526 "../sncExample.stt"
+# line 515 "../sncExample.stt"
 			seq_pvAssign(seqg_env, 136/*pvToSet*/, seqg_var->pvName);
-# line 527 "../sncExample.stt"
-			seq_pvGetTmo(seqg_env, 0/*parameters*/ + (CH_ID)(32), DEFAULT, DEFAULT_TIMEOUT);
-# line 528 "../sncExample.stt"
-			seqg_var->pvToSet = seqg_var->parameters[32];
-# line 529 "../sncExample.stt"
+# line 516 "../sncExample.stt"
+			seq_pvGetTmo(seqg_env, 0/*parameters*/ + (CH_ID)(30), DEFAULT, DEFAULT_TIMEOUT);
+# line 517 "../sncExample.stt"
+			seqg_var->pvToSet = seqg_var->parameters[30];
+# line 518 "../sncExample.stt"
 			seq_pvPutTmo(seqg_env, 136/*pvToSet*/, DEFAULT, DEFAULT_TIMEOUT);
-# line 530 "../sncExample.stt"
+# line 519 "../sncExample.stt"
 			printf("AutoOnOff: %s is set to: %f\n", seqg_var->pvName, seqg_var->pvToSet);
-# line 531 "../sncExample.stt"
+# line 520 "../sncExample.stt"
 			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:frontBiasSet_set", seqg_var->devNo);
-# line 532 "../sncExample.stt"
+# line 521 "../sncExample.stt"
 			seq_pvAssign(seqg_env, 136/*pvToSet*/, seqg_var->pvName);
-# line 533 "../sncExample.stt"
-			seq_pvGetTmo(seqg_env, 0/*parameters*/ + (CH_ID)(33), DEFAULT, DEFAULT_TIMEOUT);
-# line 534 "../sncExample.stt"
-			seqg_var->pvToSet = seqg_var->parameters[33];
-# line 535 "../sncExample.stt"
+# line 522 "../sncExample.stt"
+			seq_pvGetTmo(seqg_env, 0/*parameters*/ + (CH_ID)(31), DEFAULT, DEFAULT_TIMEOUT);
+# line 523 "../sncExample.stt"
+			seqg_var->pvToSet = seqg_var->parameters[31];
+# line 524 "../sncExample.stt"
 			seq_pvPutTmo(seqg_env, 136/*pvToSet*/, DEFAULT, DEFAULT_TIMEOUT);
-# line 536 "../sncExample.stt"
+# line 525 "../sncExample.stt"
 			printf("AutoOnOff: %s is set to: %f\n", seqg_var->pvName, seqg_var->pvToSet);
 		}
 		return;
 	case 7:
 		{
-# line 539 "../sncExample.stt"
+# line 528 "../sncExample.stt"
 			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:biasSet_set", seqg_var->devNo);
-# line 540 "../sncExample.stt"
+# line 529 "../sncExample.stt"
 			seq_pvAssign(seqg_env, 136/*pvToSet*/, seqg_var->pvName);
-# line 541 "../sncExample.stt"
-			seq_pvGetTmo(seqg_env, 0/*parameters*/ + (CH_ID)(34), DEFAULT, DEFAULT_TIMEOUT);
-# line 542 "../sncExample.stt"
-			seqg_var->pvToSet = seqg_var->parameters[34];
-# line 543 "../sncExample.stt"
+# line 530 "../sncExample.stt"
+			seq_pvGetTmo(seqg_env, 0/*parameters*/ + (CH_ID)(32), DEFAULT, DEFAULT_TIMEOUT);
+# line 531 "../sncExample.stt"
+			seqg_var->pvToSet = seqg_var->parameters[32];
+# line 532 "../sncExample.stt"
 			seq_pvPutTmo(seqg_env, 136/*pvToSet*/, DEFAULT, DEFAULT_TIMEOUT);
-# line 544 "../sncExample.stt"
+# line 533 "../sncExample.stt"
 			printf("AutoOnOff: %s is set to: %f\n", seqg_var->pvName, seqg_var->pvToSet);
-# line 545 "../sncExample.stt"
+# line 534 "../sncExample.stt"
 			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:frontBiasSet_set", seqg_var->devNo);
-# line 546 "../sncExample.stt"
+# line 535 "../sncExample.stt"
 			seq_pvAssign(seqg_env, 136/*pvToSet*/, seqg_var->pvName);
-# line 547 "../sncExample.stt"
-			seq_pvGetTmo(seqg_env, 0/*parameters*/ + (CH_ID)(35), DEFAULT, DEFAULT_TIMEOUT);
-# line 548 "../sncExample.stt"
-			seqg_var->pvToSet = seqg_var->parameters[35];
-# line 549 "../sncExample.stt"
+# line 536 "../sncExample.stt"
+			seq_pvGetTmo(seqg_env, 0/*parameters*/ + (CH_ID)(33), DEFAULT, DEFAULT_TIMEOUT);
+# line 537 "../sncExample.stt"
+			seqg_var->pvToSet = seqg_var->parameters[33];
+# line 538 "../sncExample.stt"
 			seq_pvPutTmo(seqg_env, 136/*pvToSet*/, DEFAULT, DEFAULT_TIMEOUT);
+# line 539 "../sncExample.stt"
+			printf("AutoOnOff: %s is set to: %f\n", seqg_var->pvName, seqg_var->pvToSet);
+		}
+		return;
+	case 8:
+		{
+# line 542 "../sncExample.stt"
+			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:biasSet_set", seqg_var->devNo);
+# line 543 "../sncExample.stt"
+			seq_pvAssign(seqg_env, 136/*pvToSet*/, seqg_var->pvName);
+# line 544 "../sncExample.stt"
+			seq_pvGetTmo(seqg_env, 0/*parameters*/ + (CH_ID)(34), DEFAULT, DEFAULT_TIMEOUT);
+# line 545 "../sncExample.stt"
+			seqg_var->pvToSet = seqg_var->parameters[34];
+# line 546 "../sncExample.stt"
+			seq_pvPutTmo(seqg_env, 136/*pvToSet*/, DEFAULT, DEFAULT_TIMEOUT);
+# line 547 "../sncExample.stt"
+			printf("AutoOnOff: %s is set to: %f\n", seqg_var->pvName, seqg_var->pvToSet);
+# line 548 "../sncExample.stt"
+			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:frontBiasSet_set", seqg_var->devNo);
+# line 549 "../sncExample.stt"
+			seq_pvAssign(seqg_env, 136/*pvToSet*/, seqg_var->pvName);
 # line 550 "../sncExample.stt"
+			seq_pvGetTmo(seqg_env, 0/*parameters*/ + (CH_ID)(35), DEFAULT, DEFAULT_TIMEOUT);
+# line 551 "../sncExample.stt"
+			seqg_var->pvToSet = seqg_var->parameters[35];
+# line 552 "../sncExample.stt"
+			seq_pvPutTmo(seqg_env, 136/*pvToSet*/, DEFAULT, DEFAULT_TIMEOUT);
+# line 553 "../sncExample.stt"
 			printf("AutoOnOff: %s is set to: %f\n", seqg_var->pvName, seqg_var->pvToSet);
 		}
 		return;
@@ -854,11 +876,18 @@ static void seqg_action_ssOnOff_0_OnInit2(SS_ID seqg_env, int seqg_trn, int *seq
 /* Event function for state "OnModify" in state set "ssOnOff" */
 static seqBool seqg_event_ssOnOff_0_OnModify(SS_ID seqg_env, int *seqg_ptrn, int *seqg_pnst)
 {
-# line 554 "../sncExample.stt"
+# line 557 "../sncExample.stt"
+	if (seqg_var->statusFlag == 10)
+	{
+		*seqg_pnst = 0;
+		*seqg_ptrn = 0;
+		return TRUE;
+	}
+# line 562 "../sncExample.stt"
 	if (seq_delay(seqg_env, seqg_var->interval))
 	{
 		*seqg_pnst = 4;
-		*seqg_ptrn = 0;
+		*seqg_ptrn = 1;
 		return TRUE;
 	}
 	return FALSE;
@@ -871,43 +900,53 @@ static void seqg_action_ssOnOff_0_OnModify(SS_ID seqg_env, int seqg_trn, int *se
 	{
 	case 0:
 		{
-# line 555 "../sncExample.stt"
-			printf("AutoOnOff: Turn On System: Turn On Modify\n");
-# line 556 "../sncExample.stt"
-			sprintf(seqg_var->logMsg, "AutoOnOff:rcsRf%d: Turn On Modify...", seqg_var->devNo);
-# line 557 "../sncExample.stt"
-			seq_pvPutTmo(seqg_env, 132/*logMsg*/, DEFAULT, DEFAULT_TIMEOUT);
+# line 558 "../sncExample.stt"
+			printf("AutoOnOff: Turn On System: Interrupt!!!\n");
 # line 559 "../sncExample.stt"
-			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:ampModifyOption_set", seqg_var->devNo);
+			sprintf(seqg_var->logMsg, "rcsRf%d: Turn On Interrupt!!!", seqg_var->devNo);
 # line 560 "../sncExample.stt"
-			seq_pvAssign(seqg_env, 137/*pvToSwitch*/, seqg_var->pvName);
-# line 561 "../sncExample.stt"
-			seqg_var->pvToSwitch = 1;
-# line 562 "../sncExample.stt"
-			seq_pvPutTmo(seqg_env, 137/*pvToSwitch*/, DEFAULT, DEFAULT_TIMEOUT);
+			seq_pvPutTmo(seqg_env, 132/*logMsg*/, DEFAULT, DEFAULT_TIMEOUT);
+		}
+		return;
+	case 1:
+		{
 # line 563 "../sncExample.stt"
-			printf("AutoOnOff: %s is set to: %d\n", seqg_var->pvName, seqg_var->pvToSwitch);
+			printf("AutoOnOff: Turn On System: Turn On Modify\n");
+# line 564 "../sncExample.stt"
+			sprintf(seqg_var->logMsg, "AutoOnOff:rcsRf%d: Turn On Modify...", seqg_var->devNo);
 # line 565 "../sncExample.stt"
-			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:tuneModifyOption_set", seqg_var->devNo);
-# line 566 "../sncExample.stt"
-			seq_pvAssign(seqg_env, 137/*pvToSwitch*/, seqg_var->pvName);
+			seq_pvPutTmo(seqg_env, 132/*logMsg*/, DEFAULT, DEFAULT_TIMEOUT);
 # line 567 "../sncExample.stt"
-			seqg_var->pvToSwitch = 1;
+			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:ampModifyOption_set", seqg_var->devNo);
 # line 568 "../sncExample.stt"
-			seq_pvPutTmo(seqg_env, 137/*pvToSwitch*/, DEFAULT, DEFAULT_TIMEOUT);
-# line 569 "../sncExample.stt"
-			printf("AutoOnOff: %s is set to: %d\n", seqg_var->pvName, seqg_var->pvToSwitch);
-# line 571 "../sncExample.stt"
-			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:phaseModifyOption_set", seqg_var->devNo);
-# line 572 "../sncExample.stt"
 			seq_pvAssign(seqg_env, 137/*pvToSwitch*/, seqg_var->pvName);
-# line 573 "../sncExample.stt"
+# line 569 "../sncExample.stt"
 			seqg_var->pvToSwitch = 1;
-# line 574 "../sncExample.stt"
+# line 570 "../sncExample.stt"
 			seq_pvPutTmo(seqg_env, 137/*pvToSwitch*/, DEFAULT, DEFAULT_TIMEOUT);
-# line 575 "../sncExample.stt"
+# line 571 "../sncExample.stt"
 			printf("AutoOnOff: %s is set to: %d\n", seqg_var->pvName, seqg_var->pvToSwitch);
+# line 573 "../sncExample.stt"
+			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:tuneModifyOption_set", seqg_var->devNo);
+# line 574 "../sncExample.stt"
+			seq_pvAssign(seqg_env, 137/*pvToSwitch*/, seqg_var->pvName);
+# line 575 "../sncExample.stt"
+			seqg_var->pvToSwitch = 1;
+# line 576 "../sncExample.stt"
+			seq_pvPutTmo(seqg_env, 137/*pvToSwitch*/, DEFAULT, DEFAULT_TIMEOUT);
 # line 577 "../sncExample.stt"
+			printf("AutoOnOff: %s is set to: %d\n", seqg_var->pvName, seqg_var->pvToSwitch);
+# line 579 "../sncExample.stt"
+			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:phaseModifyOption_set", seqg_var->devNo);
+# line 580 "../sncExample.stt"
+			seq_pvAssign(seqg_env, 137/*pvToSwitch*/, seqg_var->pvName);
+# line 581 "../sncExample.stt"
+			seqg_var->pvToSwitch = 1;
+# line 582 "../sncExample.stt"
+			seq_pvPutTmo(seqg_env, 137/*pvToSwitch*/, DEFAULT, DEFAULT_TIMEOUT);
+# line 583 "../sncExample.stt"
+			printf("AutoOnOff: %s is set to: %d\n", seqg_var->pvName, seqg_var->pvToSwitch);
+# line 585 "../sncExample.stt"
 			printf("AutoOnOff: Turn On System: Turn On Modify End\n");
 		}
 		return;
@@ -919,11 +958,18 @@ static void seqg_action_ssOnOff_0_OnModify(SS_ID seqg_env, int seqg_trn, int *se
 /* Event function for state "OnReset" in state set "ssOnOff" */
 static seqBool seqg_event_ssOnOff_0_OnReset(SS_ID seqg_env, int *seqg_ptrn, int *seqg_pnst)
 {
-# line 581 "../sncExample.stt"
+# line 589 "../sncExample.stt"
+	if (seqg_var->statusFlag == 10)
+	{
+		*seqg_pnst = 0;
+		*seqg_ptrn = 0;
+		return TRUE;
+	}
+# line 594 "../sncExample.stt"
 	if (seq_delay(seqg_env, seqg_var->interval))
 	{
 		*seqg_pnst = 5;
-		*seqg_ptrn = 0;
+		*seqg_ptrn = 1;
 		return TRUE;
 	}
 	return FALSE;
@@ -936,53 +982,63 @@ static void seqg_action_ssOnOff_0_OnReset(SS_ID seqg_env, int seqg_trn, int *seq
 	{
 	case 0:
 		{
-# line 582 "../sncExample.stt"
-			printf("AutoOnOff: Turn On System: Reset System\n");
-# line 583 "../sncExample.stt"
-			sprintf(seqg_var->logMsg, "AutoOnOff:rcsRf%d: Reset System...", seqg_var->devNo);
-# line 584 "../sncExample.stt"
-			seq_pvPutTmo(seqg_env, 132/*logMsg*/, DEFAULT, DEFAULT_TIMEOUT);
-# line 586 "../sncExample.stt"
-			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:rfReset_set", seqg_var->devNo);
-# line 587 "../sncExample.stt"
-			seq_pvAssign(seqg_env, 137/*pvToSwitch*/, seqg_var->pvName);
-# line 588 "../sncExample.stt"
-			seqg_var->pvToSwitch = 1;
-# line 589 "../sncExample.stt"
-			seq_pvPutTmo(seqg_env, 137/*pvToSwitch*/, DEFAULT, DEFAULT_TIMEOUT);
 # line 590 "../sncExample.stt"
-			printf("AutoOnOff: %s is set to: %d\n", seqg_var->pvName, seqg_var->pvToSwitch);
+			printf("AutoOnOff: Turn On System: Interrupt!!!\n");
+# line 591 "../sncExample.stt"
+			sprintf(seqg_var->logMsg, "rcsRf%d: Turn On Interrupt!!!", seqg_var->devNo);
 # line 592 "../sncExample.stt"
-			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:drvReset_set", seqg_var->devNo);
-# line 593 "../sncExample.stt"
-			seq_pvAssign(seqg_env, 137/*pvToSwitch*/, seqg_var->pvName);
-# line 594 "../sncExample.stt"
-			seqg_var->pvToSwitch = 1;
+			seq_pvPutTmo(seqg_env, 132/*logMsg*/, DEFAULT, DEFAULT_TIMEOUT);
+		}
+		return;
+	case 1:
+		{
 # line 595 "../sncExample.stt"
-			seq_pvPutTmo(seqg_env, 137/*pvToSwitch*/, DEFAULT, DEFAULT_TIMEOUT);
+			printf("AutoOnOff: Turn On System: Reset System\n");
 # line 596 "../sncExample.stt"
-			printf("AutoOnOff: %s is set to: %d\n", seqg_var->pvName, seqg_var->pvToSwitch);
-# line 598 "../sncExample.stt"
-			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:rfReset_set", seqg_var->devNo);
+			sprintf(seqg_var->logMsg, "AutoOnOff:rcsRf%d: Reset System...", seqg_var->devNo);
+# line 597 "../sncExample.stt"
+			seq_pvPutTmo(seqg_env, 132/*logMsg*/, DEFAULT, DEFAULT_TIMEOUT);
 # line 599 "../sncExample.stt"
-			seq_pvAssign(seqg_env, 137/*pvToSwitch*/, seqg_var->pvName);
+			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:rfReset_set", seqg_var->devNo);
 # line 600 "../sncExample.stt"
-			seqg_var->pvToSwitch = 1;
-# line 601 "../sncExample.stt"
-			seq_pvPutTmo(seqg_env, 137/*pvToSwitch*/, DEFAULT, DEFAULT_TIMEOUT);
-# line 602 "../sncExample.stt"
-			printf("AutoOnOff: %s is set to: %d\n", seqg_var->pvName, seqg_var->pvToSwitch);
-# line 604 "../sncExample.stt"
-			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:drvReset_set", seqg_var->devNo);
-# line 605 "../sncExample.stt"
 			seq_pvAssign(seqg_env, 137/*pvToSwitch*/, seqg_var->pvName);
-# line 606 "../sncExample.stt"
+# line 601 "../sncExample.stt"
 			seqg_var->pvToSwitch = 1;
-# line 607 "../sncExample.stt"
+# line 602 "../sncExample.stt"
 			seq_pvPutTmo(seqg_env, 137/*pvToSwitch*/, DEFAULT, DEFAULT_TIMEOUT);
-# line 608 "../sncExample.stt"
+# line 603 "../sncExample.stt"
 			printf("AutoOnOff: %s is set to: %d\n", seqg_var->pvName, seqg_var->pvToSwitch);
-# line 610 "../sncExample.stt"
+# line 605 "../sncExample.stt"
+			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:drvReset_set", seqg_var->devNo);
+# line 606 "../sncExample.stt"
+			seq_pvAssign(seqg_env, 137/*pvToSwitch*/, seqg_var->pvName);
+# line 607 "../sncExample.stt"
+			seqg_var->pvToSwitch = 1;
+# line 608 "../sncExample.stt"
+			seq_pvPutTmo(seqg_env, 137/*pvToSwitch*/, DEFAULT, DEFAULT_TIMEOUT);
+# line 609 "../sncExample.stt"
+			printf("AutoOnOff: %s is set to: %d\n", seqg_var->pvName, seqg_var->pvToSwitch);
+# line 611 "../sncExample.stt"
+			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:rfReset_set", seqg_var->devNo);
+# line 612 "../sncExample.stt"
+			seq_pvAssign(seqg_env, 137/*pvToSwitch*/, seqg_var->pvName);
+# line 613 "../sncExample.stt"
+			seqg_var->pvToSwitch = 1;
+# line 614 "../sncExample.stt"
+			seq_pvPutTmo(seqg_env, 137/*pvToSwitch*/, DEFAULT, DEFAULT_TIMEOUT);
+# line 615 "../sncExample.stt"
+			printf("AutoOnOff: %s is set to: %d\n", seqg_var->pvName, seqg_var->pvToSwitch);
+# line 617 "../sncExample.stt"
+			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:drvReset_set", seqg_var->devNo);
+# line 618 "../sncExample.stt"
+			seq_pvAssign(seqg_env, 137/*pvToSwitch*/, seqg_var->pvName);
+# line 619 "../sncExample.stt"
+			seqg_var->pvToSwitch = 1;
+# line 620 "../sncExample.stt"
+			seq_pvPutTmo(seqg_env, 137/*pvToSwitch*/, DEFAULT, DEFAULT_TIMEOUT);
+# line 621 "../sncExample.stt"
+			printf("AutoOnOff: %s is set to: %d\n", seqg_var->pvName, seqg_var->pvToSwitch);
+# line 623 "../sncExample.stt"
 			printf("AutoOnOff: Turn On System: Reset System End\n");
 		}
 		return;
@@ -994,11 +1050,18 @@ static void seqg_action_ssOnOff_0_OnReset(SS_ID seqg_env, int seqg_trn, int *seq
 /* Event function for state "OnAmpPoint" in state set "ssOnOff" */
 static seqBool seqg_event_ssOnOff_0_OnAmpPoint(SS_ID seqg_env, int *seqg_ptrn, int *seqg_pnst)
 {
-# line 614 "../sncExample.stt"
+# line 627 "../sncExample.stt"
+	if (seqg_var->statusFlag == 10)
+	{
+		*seqg_pnst = 0;
+		*seqg_ptrn = 0;
+		return TRUE;
+	}
+# line 632 "../sncExample.stt"
 	if (seq_delay(seqg_env, 1))
 	{
 		*seqg_pnst = 6;
-		*seqg_ptrn = 0;
+		*seqg_ptrn = 1;
 		return TRUE;
 	}
 	return FALSE;
@@ -1011,25 +1074,35 @@ static void seqg_action_ssOnOff_0_OnAmpPoint(SS_ID seqg_env, int seqg_trn, int *
 	{
 	case 0:
 		{
-# line 615 "../sncExample.stt"
-			printf("AutoOnOff: Turn On System: Set Amp Point Value\n");
-# line 616 "../sncExample.stt"
-			sprintf(seqg_var->logMsg, "AutoOnOff:rcsRf%d: Set Amp Point...", seqg_var->devNo);
-# line 617 "../sncExample.stt"
+# line 628 "../sncExample.stt"
+			printf("AutoOnOff: Turn On System: Interrupt!!!\n");
+# line 629 "../sncExample.stt"
+			sprintf(seqg_var->logMsg, "rcsRf%d: Turn On Interrupt!!!", seqg_var->devNo);
+# line 630 "../sncExample.stt"
 			seq_pvPutTmo(seqg_env, 132/*logMsg*/, DEFAULT, DEFAULT_TIMEOUT);
-# line 619 "../sncExample.stt"
+		}
+		return;
+	case 1:
+		{
+# line 633 "../sncExample.stt"
+			printf("AutoOnOff: Turn On System: Set Amp Point Value\n");
+# line 634 "../sncExample.stt"
+			sprintf(seqg_var->logMsg, "AutoOnOff:rcsRf%d: Set Amp Point...", seqg_var->devNo);
+# line 635 "../sncExample.stt"
+			seq_pvPutTmo(seqg_env, 132/*logMsg*/, DEFAULT, DEFAULT_TIMEOUT);
+# line 637 "../sncExample.stt"
 			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:amp_set", seqg_var->devNo);
-# line 620 "../sncExample.stt"
+# line 638 "../sncExample.stt"
 			seq_pvAssign(seqg_env, 136/*pvToSet*/, seqg_var->pvName);
-# line 621 "../sncExample.stt"
+# line 639 "../sncExample.stt"
 			seq_pvGetTmo(seqg_env, 36/*process_parameters*/ + (CH_ID)(12 * (seqg_var->devNo - 1) + 0), DEFAULT, DEFAULT_TIMEOUT);
-# line 622 "../sncExample.stt"
+# line 640 "../sncExample.stt"
 			seqg_var->pvToSet = seqg_var->process_parameters[12 * (seqg_var->devNo - 1) + 0];
-# line 623 "../sncExample.stt"
+# line 641 "../sncExample.stt"
 			seq_pvPutTmo(seqg_env, 136/*pvToSet*/, DEFAULT, DEFAULT_TIMEOUT);
-# line 624 "../sncExample.stt"
+# line 642 "../sncExample.stt"
 			printf("AutoOnOff: %s is set to: %f\n", seqg_var->pvName, seqg_var->pvToSet);
-# line 626 "../sncExample.stt"
+# line 644 "../sncExample.stt"
 			printf("AutoOnOff: Turn On System: Set Amp Point Value End\n");
 		}
 		return;
@@ -1041,11 +1114,18 @@ static void seqg_action_ssOnOff_0_OnAmpPoint(SS_ID seqg_env, int seqg_trn, int *
 /* Event function for state "OnCloseTuneLoop" in state set "ssOnOff" */
 static seqBool seqg_event_ssOnOff_0_OnCloseTuneLoop(SS_ID seqg_env, int *seqg_ptrn, int *seqg_pnst)
 {
-# line 630 "../sncExample.stt"
+# line 648 "../sncExample.stt"
+	if (seqg_var->statusFlag == 10)
+	{
+		*seqg_pnst = 0;
+		*seqg_ptrn = 0;
+		return TRUE;
+	}
+# line 653 "../sncExample.stt"
 	if (seq_delay(seqg_env, 1))
 	{
 		*seqg_pnst = 7;
-		*seqg_ptrn = 0;
+		*seqg_ptrn = 1;
 		return TRUE;
 	}
 	return FALSE;
@@ -1058,23 +1138,33 @@ static void seqg_action_ssOnOff_0_OnCloseTuneLoop(SS_ID seqg_env, int seqg_trn, 
 	{
 	case 0:
 		{
-# line 631 "../sncExample.stt"
-			printf("AutoOnOff: Turn On System: Close Tune Loop\n");
-# line 632 "../sncExample.stt"
-			sprintf(seqg_var->logMsg, "AutoOnOff:rcsRf%d: Close Tune Loop...", seqg_var->devNo);
-# line 633 "../sncExample.stt"
+# line 649 "../sncExample.stt"
+			printf("AutoOnOff: Turn On System: Interrupt!!!\n");
+# line 650 "../sncExample.stt"
+			sprintf(seqg_var->logMsg, "rcsRf%d: Turn On Interrupt!!!", seqg_var->devNo);
+# line 651 "../sncExample.stt"
 			seq_pvPutTmo(seqg_env, 132/*logMsg*/, DEFAULT, DEFAULT_TIMEOUT);
-# line 635 "../sncExample.stt"
+		}
+		return;
+	case 1:
+		{
+# line 654 "../sncExample.stt"
+			printf("AutoOnOff: Turn On System: Close Tune Loop\n");
+# line 655 "../sncExample.stt"
+			sprintf(seqg_var->logMsg, "AutoOnOff:rcsRf%d: Close Tune Loop...", seqg_var->devNo);
+# line 656 "../sncExample.stt"
+			seq_pvPutTmo(seqg_env, 132/*logMsg*/, DEFAULT, DEFAULT_TIMEOUT);
+# line 658 "../sncExample.stt"
 			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:tuneOption_set", seqg_var->devNo);
-# line 636 "../sncExample.stt"
+# line 659 "../sncExample.stt"
 			seq_pvAssign(seqg_env, 137/*pvToSwitch*/, seqg_var->pvName);
-# line 637 "../sncExample.stt"
+# line 660 "../sncExample.stt"
 			seqg_var->pvToSwitch = 1;
-# line 638 "../sncExample.stt"
+# line 661 "../sncExample.stt"
 			seq_pvPutTmo(seqg_env, 137/*pvToSwitch*/, DEFAULT, DEFAULT_TIMEOUT);
-# line 639 "../sncExample.stt"
+# line 662 "../sncExample.stt"
 			printf("AutoOnOff: %s is set to: %d\n", seqg_var->pvName, seqg_var->pvToSwitch);
-# line 641 "../sncExample.stt"
+# line 664 "../sncExample.stt"
 			printf("AutoOnOff: Turn On System: Close Tune Loop End\n");
 		}
 		return;
@@ -1086,11 +1176,18 @@ static void seqg_action_ssOnOff_0_OnCloseTuneLoop(SS_ID seqg_env, int seqg_trn, 
 /* Event function for state "OnCloseGridTune" in state set "ssOnOff" */
 static seqBool seqg_event_ssOnOff_0_OnCloseGridTune(SS_ID seqg_env, int *seqg_ptrn, int *seqg_pnst)
 {
-# line 645 "../sncExample.stt"
+# line 668 "../sncExample.stt"
+	if (seqg_var->statusFlag == 10)
+	{
+		*seqg_pnst = 0;
+		*seqg_ptrn = 0;
+		return TRUE;
+	}
+# line 673 "../sncExample.stt"
 	if (seq_delay(seqg_env, 1))
 	{
 		*seqg_pnst = 8;
-		*seqg_ptrn = 0;
+		*seqg_ptrn = 1;
 		return TRUE;
 	}
 	return FALSE;
@@ -1103,23 +1200,33 @@ static void seqg_action_ssOnOff_0_OnCloseGridTune(SS_ID seqg_env, int seqg_trn, 
 	{
 	case 0:
 		{
-# line 646 "../sncExample.stt"
-			printf("AutoOnOff: Turn On System: Close Grid Tune\n");
-# line 647 "../sncExample.stt"
-			sprintf(seqg_var->logMsg, "AutoOnOff:rcsRf%d: Close Grid Tune...", seqg_var->devNo);
-# line 648 "../sncExample.stt"
+# line 669 "../sncExample.stt"
+			printf("AutoOnOff: Turn On System: Interrupt!!!\n");
+# line 670 "../sncExample.stt"
+			sprintf(seqg_var->logMsg, "rcsRf%d: Turn On Interrupt!!!", seqg_var->devNo);
+# line 671 "../sncExample.stt"
 			seq_pvPutTmo(seqg_env, 132/*logMsg*/, DEFAULT, DEFAULT_TIMEOUT);
-# line 650 "../sncExample.stt"
+		}
+		return;
+	case 1:
+		{
+# line 674 "../sncExample.stt"
+			printf("AutoOnOff: Turn On System: Close Grid Tune\n");
+# line 675 "../sncExample.stt"
+			sprintf(seqg_var->logMsg, "AutoOnOff:rcsRf%d: Close Grid Tune...", seqg_var->devNo);
+# line 676 "../sncExample.stt"
+			seq_pvPutTmo(seqg_env, 132/*logMsg*/, DEFAULT, DEFAULT_TIMEOUT);
+# line 678 "../sncExample.stt"
 			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:frontTuneOption_set", seqg_var->devNo);
-# line 651 "../sncExample.stt"
+# line 679 "../sncExample.stt"
 			seq_pvAssign(seqg_env, 137/*pvToSwitch*/, seqg_var->pvName);
-# line 652 "../sncExample.stt"
+# line 680 "../sncExample.stt"
 			seqg_var->pvToSwitch = 1;
-# line 653 "../sncExample.stt"
+# line 681 "../sncExample.stt"
 			seq_pvPutTmo(seqg_env, 137/*pvToSwitch*/, DEFAULT, DEFAULT_TIMEOUT);
-# line 654 "../sncExample.stt"
+# line 682 "../sncExample.stt"
 			printf("AutoOnOff: %s is set to: %d\n", seqg_var->pvName, seqg_var->pvToSwitch);
-# line 656 "../sncExample.stt"
+# line 684 "../sncExample.stt"
 			printf("AutoOnOff: Turn On System: Close Grid Tune End\n");
 		}
 		return;
@@ -1131,11 +1238,18 @@ static void seqg_action_ssOnOff_0_OnCloseGridTune(SS_ID seqg_env, int seqg_trn, 
 /* Event function for state "OnTuneFF" in state set "ssOnOff" */
 static seqBool seqg_event_ssOnOff_0_OnTuneFF(SS_ID seqg_env, int *seqg_ptrn, int *seqg_pnst)
 {
-# line 660 "../sncExample.stt"
+# line 688 "../sncExample.stt"
+	if (seqg_var->statusFlag == 10)
+	{
+		*seqg_pnst = 0;
+		*seqg_ptrn = 0;
+		return TRUE;
+	}
+# line 693 "../sncExample.stt"
 	if (seq_delay(seqg_env, seqg_var->interval))
 	{
 		*seqg_pnst = 9;
-		*seqg_ptrn = 0;
+		*seqg_ptrn = 1;
 		return TRUE;
 	}
 	return FALSE;
@@ -1148,23 +1262,33 @@ static void seqg_action_ssOnOff_0_OnTuneFF(SS_ID seqg_env, int seqg_trn, int *se
 	{
 	case 0:
 		{
-# line 661 "../sncExample.stt"
-			printf("AutoOnOff: Turn On System: Turn On Tune FF\n");
-# line 662 "../sncExample.stt"
-			sprintf(seqg_var->logMsg, "AutoOnOff:rcsRf%d: Turn On Tune FF...", seqg_var->devNo);
-# line 663 "../sncExample.stt"
+# line 689 "../sncExample.stt"
+			printf("AutoOnOff: Turn On System: Interrupt!!!\n");
+# line 690 "../sncExample.stt"
+			sprintf(seqg_var->logMsg, "rcsRf%d: Turn On Interrupt!!!", seqg_var->devNo);
+# line 691 "../sncExample.stt"
 			seq_pvPutTmo(seqg_env, 132/*logMsg*/, DEFAULT, DEFAULT_TIMEOUT);
-# line 665 "../sncExample.stt"
+		}
+		return;
+	case 1:
+		{
+# line 694 "../sncExample.stt"
+			printf("AutoOnOff: Turn On System: Turn On Tune FF\n");
+# line 695 "../sncExample.stt"
+			sprintf(seqg_var->logMsg, "AutoOnOff:rcsRf%d: Turn On Tune FF...", seqg_var->devNo);
+# line 696 "../sncExample.stt"
+			seq_pvPutTmo(seqg_env, 132/*logMsg*/, DEFAULT, DEFAULT_TIMEOUT);
+# line 698 "../sncExample.stt"
 			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:tuneFFOption_set", seqg_var->devNo);
-# line 666 "../sncExample.stt"
+# line 699 "../sncExample.stt"
 			seq_pvAssign(seqg_env, 137/*pvToSwitch*/, seqg_var->pvName);
-# line 667 "../sncExample.stt"
+# line 700 "../sncExample.stt"
 			seqg_var->pvToSwitch = 1;
-# line 668 "../sncExample.stt"
+# line 701 "../sncExample.stt"
 			seq_pvPutTmo(seqg_env, 137/*pvToSwitch*/, DEFAULT, DEFAULT_TIMEOUT);
-# line 669 "../sncExample.stt"
+# line 702 "../sncExample.stt"
 			printf("AutoOnOff: %s is set to: %d\n", seqg_var->pvName, seqg_var->pvToSwitch);
-# line 671 "../sncExample.stt"
+# line 704 "../sncExample.stt"
 			printf("AutoOnOff: Turn On System: Turn On Tune FF End\n");
 		}
 		return;
@@ -1176,11 +1300,18 @@ static void seqg_action_ssOnOff_0_OnTuneFF(SS_ID seqg_env, int seqg_trn, int *se
 /* Event function for state "OnTuneMOff" in state set "ssOnOff" */
 static seqBool seqg_event_ssOnOff_0_OnTuneMOff(SS_ID seqg_env, int *seqg_ptrn, int *seqg_pnst)
 {
-# line 675 "../sncExample.stt"
+# line 708 "../sncExample.stt"
+	if (seqg_var->statusFlag == 10)
+	{
+		*seqg_pnst = 0;
+		*seqg_ptrn = 0;
+		return TRUE;
+	}
+# line 713 "../sncExample.stt"
 	if (seq_delay(seqg_env, seqg_var->interval * 1.6))
 	{
 		*seqg_pnst = 10;
-		*seqg_ptrn = 0;
+		*seqg_ptrn = 1;
 		return TRUE;
 	}
 	return FALSE;
@@ -1193,23 +1324,33 @@ static void seqg_action_ssOnOff_0_OnTuneMOff(SS_ID seqg_env, int seqg_trn, int *
 	{
 	case 0:
 		{
-# line 676 "../sncExample.stt"
-			printf("AutoOnOff: Turn On System: Turn Off Tune M\n");
-# line 677 "../sncExample.stt"
-			sprintf(seqg_var->logMsg, "AutoOnOff:rcsRf%d: Turn Off Tune M...", seqg_var->devNo);
-# line 678 "../sncExample.stt"
+# line 709 "../sncExample.stt"
+			printf("AutoOnOff: Turn On System: Interrupt!!!\n");
+# line 710 "../sncExample.stt"
+			sprintf(seqg_var->logMsg, "rcsRf%d: Turn On Interrupt!!!", seqg_var->devNo);
+# line 711 "../sncExample.stt"
 			seq_pvPutTmo(seqg_env, 132/*logMsg*/, DEFAULT, DEFAULT_TIMEOUT);
-# line 680 "../sncExample.stt"
+		}
+		return;
+	case 1:
+		{
+# line 714 "../sncExample.stt"
+			printf("AutoOnOff: Turn On System: Turn Off Tune M\n");
+# line 715 "../sncExample.stt"
+			sprintf(seqg_var->logMsg, "AutoOnOff:rcsRf%d: Turn Off Tune M...", seqg_var->devNo);
+# line 716 "../sncExample.stt"
+			seq_pvPutTmo(seqg_env, 132/*logMsg*/, DEFAULT, DEFAULT_TIMEOUT);
+# line 718 "../sncExample.stt"
 			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:tuneModifyOption_set", seqg_var->devNo);
-# line 681 "../sncExample.stt"
+# line 719 "../sncExample.stt"
 			seq_pvAssign(seqg_env, 137/*pvToSwitch*/, seqg_var->pvName);
-# line 682 "../sncExample.stt"
+# line 720 "../sncExample.stt"
 			seqg_var->pvToSwitch = 0;
-# line 683 "../sncExample.stt"
+# line 721 "../sncExample.stt"
 			seq_pvPutTmo(seqg_env, 137/*pvToSwitch*/, DEFAULT, DEFAULT_TIMEOUT);
-# line 684 "../sncExample.stt"
+# line 722 "../sncExample.stt"
 			printf("AutoOnOff: %s is set to: %d\n", seqg_var->pvName, seqg_var->pvToSwitch);
-# line 686 "../sncExample.stt"
+# line 724 "../sncExample.stt"
 			printf("AutoOnOff: Turn On System: Turn Off Tune M End\n");
 		}
 		return;
@@ -1221,11 +1362,18 @@ static void seqg_action_ssOnOff_0_OnTuneMOff(SS_ID seqg_env, int seqg_trn, int *
 /* Event function for state "OnGridTuneISet" in state set "ssOnOff" */
 static seqBool seqg_event_ssOnOff_0_OnGridTuneISet(SS_ID seqg_env, int *seqg_ptrn, int *seqg_pnst)
 {
-# line 690 "../sncExample.stt"
+# line 728 "../sncExample.stt"
+	if (seqg_var->statusFlag == 10)
+	{
+		*seqg_pnst = 0;
+		*seqg_ptrn = 0;
+		return TRUE;
+	}
+# line 733 "../sncExample.stt"
 	if (seq_delay(seqg_env, seqg_var->interval))
 	{
 		*seqg_pnst = 11;
-		*seqg_ptrn = 0;
+		*seqg_ptrn = 1;
 		return TRUE;
 	}
 	return FALSE;
@@ -1238,25 +1386,35 @@ static void seqg_action_ssOnOff_0_OnGridTuneISet(SS_ID seqg_env, int seqg_trn, i
 	{
 	case 0:
 		{
-# line 691 "../sncExample.stt"
-			printf("AutoOnOff: Turn On System: Tune Grid I Set\n");
-# line 692 "../sncExample.stt"
-			sprintf(seqg_var->logMsg, "AutoOnOff:rcsRf%d: Grid Tune I Set...", seqg_var->devNo);
-# line 693 "../sncExample.stt"
+# line 729 "../sncExample.stt"
+			printf("AutoOnOff: Turn On System: Interrupt!!!\n");
+# line 730 "../sncExample.stt"
+			sprintf(seqg_var->logMsg, "rcsRf%d: Turn On Interrupt!!!", seqg_var->devNo);
+# line 731 "../sncExample.stt"
 			seq_pvPutTmo(seqg_env, 132/*logMsg*/, DEFAULT, DEFAULT_TIMEOUT);
-# line 695 "../sncExample.stt"
+		}
+		return;
+	case 1:
+		{
+# line 734 "../sncExample.stt"
+			printf("AutoOnOff: Turn On System: Tune Grid I Set\n");
+# line 735 "../sncExample.stt"
+			sprintf(seqg_var->logMsg, "AutoOnOff:rcsRf%d: Grid Tune I Set...", seqg_var->devNo);
+# line 736 "../sncExample.stt"
+			seq_pvPutTmo(seqg_env, 132/*logMsg*/, DEFAULT, DEFAULT_TIMEOUT);
+# line 738 "../sncExample.stt"
 			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:frontTuneISet_set", seqg_var->devNo);
-# line 696 "../sncExample.stt"
+# line 739 "../sncExample.stt"
 			seq_pvAssign(seqg_env, 136/*pvToSet*/, seqg_var->pvName);
-# line 697 "../sncExample.stt"
+# line 740 "../sncExample.stt"
 			seq_pvGetTmo(seqg_env, 36/*process_parameters*/ + (CH_ID)(12 * (seqg_var->devNo - 1) + 1), DEFAULT, DEFAULT_TIMEOUT);
-# line 698 "../sncExample.stt"
+# line 741 "../sncExample.stt"
 			seqg_var->pvToSet = seqg_var->process_parameters[12 * (seqg_var->devNo - 1) + 1];
-# line 699 "../sncExample.stt"
+# line 742 "../sncExample.stt"
 			seq_pvPutTmo(seqg_env, 136/*pvToSet*/, DEFAULT, DEFAULT_TIMEOUT);
-# line 700 "../sncExample.stt"
+# line 743 "../sncExample.stt"
 			printf("AutoOnOff: %s is set to: %f\n", seqg_var->pvName, seqg_var->pvToSet);
-# line 702 "../sncExample.stt"
+# line 745 "../sncExample.stt"
 			printf("AutoOnOff: Turn On System: Tune I Set End\n");
 		}
 		return;
@@ -1268,11 +1426,18 @@ static void seqg_action_ssOnOff_0_OnGridTuneISet(SS_ID seqg_env, int seqg_trn, i
 /* Event function for state "OnCloseAmpLoop" in state set "ssOnOff" */
 static seqBool seqg_event_ssOnOff_0_OnCloseAmpLoop(SS_ID seqg_env, int *seqg_ptrn, int *seqg_pnst)
 {
-# line 706 "../sncExample.stt"
+# line 749 "../sncExample.stt"
+	if (seqg_var->statusFlag == 10)
+	{
+		*seqg_pnst = 0;
+		*seqg_ptrn = 0;
+		return TRUE;
+	}
+# line 754 "../sncExample.stt"
 	if (seq_delay(seqg_env, seqg_var->interval))
 	{
 		*seqg_pnst = 12;
-		*seqg_ptrn = 0;
+		*seqg_ptrn = 1;
 		return TRUE;
 	}
 	return FALSE;
@@ -1285,23 +1450,33 @@ static void seqg_action_ssOnOff_0_OnCloseAmpLoop(SS_ID seqg_env, int seqg_trn, i
 	{
 	case 0:
 		{
-# line 707 "../sncExample.stt"
-			printf("AutoOnOff: Turn On System: Close Amp Loop\n");
-# line 708 "../sncExample.stt"
-			sprintf(seqg_var->logMsg, "AutoOnOff:rcsRf%d: Close Amp Loop...", seqg_var->devNo);
-# line 709 "../sncExample.stt"
+# line 750 "../sncExample.stt"
+			printf("AutoOnOff: Turn On System: Interrupt!!!\n");
+# line 751 "../sncExample.stt"
+			sprintf(seqg_var->logMsg, "rcsRf%d: Turn On Interrupt!!!", seqg_var->devNo);
+# line 752 "../sncExample.stt"
 			seq_pvPutTmo(seqg_env, 132/*logMsg*/, DEFAULT, DEFAULT_TIMEOUT);
-# line 711 "../sncExample.stt"
+		}
+		return;
+	case 1:
+		{
+# line 755 "../sncExample.stt"
+			printf("AutoOnOff: Turn On System: Close Amp Loop\n");
+# line 756 "../sncExample.stt"
+			sprintf(seqg_var->logMsg, "AutoOnOff:rcsRf%d: Close Amp Loop...", seqg_var->devNo);
+# line 757 "../sncExample.stt"
+			seq_pvPutTmo(seqg_env, 132/*logMsg*/, DEFAULT, DEFAULT_TIMEOUT);
+# line 759 "../sncExample.stt"
 			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:ampOption_set", seqg_var->devNo);
-# line 712 "../sncExample.stt"
+# line 760 "../sncExample.stt"
 			seq_pvAssign(seqg_env, 137/*pvToSwitch*/, seqg_var->pvName);
-# line 713 "../sncExample.stt"
+# line 761 "../sncExample.stt"
 			seqg_var->pvToSwitch = 1;
-# line 714 "../sncExample.stt"
+# line 762 "../sncExample.stt"
 			seq_pvPutTmo(seqg_env, 137/*pvToSwitch*/, DEFAULT, DEFAULT_TIMEOUT);
-# line 715 "../sncExample.stt"
+# line 763 "../sncExample.stt"
 			printf("AutoOnOff: %s is set to: %d\n", seqg_var->pvName, seqg_var->pvToSwitch);
-# line 717 "../sncExample.stt"
+# line 765 "../sncExample.stt"
 			printf("AutoOnOff: Turn On System: Close Amp Loop End\n");
 		}
 		return;
@@ -1313,11 +1488,18 @@ static void seqg_action_ssOnOff_0_OnCloseAmpLoop(SS_ID seqg_env, int seqg_trn, i
 /* Event function for state "OnTuneISet" in state set "ssOnOff" */
 static seqBool seqg_event_ssOnOff_0_OnTuneISet(SS_ID seqg_env, int *seqg_ptrn, int *seqg_pnst)
 {
-# line 721 "../sncExample.stt"
+# line 769 "../sncExample.stt"
+	if (seqg_var->statusFlag == 10)
+	{
+		*seqg_pnst = 0;
+		*seqg_ptrn = 0;
+		return TRUE;
+	}
+# line 774 "../sncExample.stt"
 	if (seq_delay(seqg_env, seqg_var->interval))
 	{
 		*seqg_pnst = 13;
-		*seqg_ptrn = 0;
+		*seqg_ptrn = 1;
 		return TRUE;
 	}
 	return FALSE;
@@ -1330,61 +1512,71 @@ static void seqg_action_ssOnOff_0_OnTuneISet(SS_ID seqg_env, int seqg_trn, int *
 	{
 	case 0:
 		{
-# line 722 "../sncExample.stt"
-			printf("AutoOnOff: Turn On System: Tune I Set\n");
-# line 723 "../sncExample.stt"
-			sprintf(seqg_var->logMsg, "AutoOnOff:rcsRf%d: Tune I Set...", seqg_var->devNo);
-# line 724 "../sncExample.stt"
+# line 770 "../sncExample.stt"
+			printf("AutoOnOff: Turn On System: Interrupt!!!\n");
+# line 771 "../sncExample.stt"
+			sprintf(seqg_var->logMsg, "rcsRf%d: Turn On Interrupt!!!", seqg_var->devNo);
+# line 772 "../sncExample.stt"
 			seq_pvPutTmo(seqg_env, 132/*logMsg*/, DEFAULT, DEFAULT_TIMEOUT);
-# line 726 "../sncExample.stt"
+		}
+		return;
+	case 1:
+		{
+# line 775 "../sncExample.stt"
+			printf("AutoOnOff: Turn On System: Tune I Set\n");
+# line 776 "../sncExample.stt"
+			sprintf(seqg_var->logMsg, "AutoOnOff:rcsRf%d: Tune I Set...", seqg_var->devNo);
+# line 777 "../sncExample.stt"
+			seq_pvPutTmo(seqg_env, 132/*logMsg*/, DEFAULT, DEFAULT_TIMEOUT);
+# line 779 "../sncExample.stt"
 			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:tuneISet_set", seqg_var->devNo);
-# line 727 "../sncExample.stt"
+# line 780 "../sncExample.stt"
 			seq_pvAssign(seqg_env, 136/*pvToSet*/, seqg_var->pvName);
-# line 728 "../sncExample.stt"
+# line 781 "../sncExample.stt"
 			seq_pvGetTmo(seqg_env, 36/*process_parameters*/ + (CH_ID)(12 * (seqg_var->devNo - 1) + 2), DEFAULT, DEFAULT_TIMEOUT);
-# line 729 "../sncExample.stt"
+# line 782 "../sncExample.stt"
 			seqg_var->pvToSet = seqg_var->process_parameters[12 * (seqg_var->devNo - 1) + 2];
-# line 730 "../sncExample.stt"
+# line 783 "../sncExample.stt"
 			seq_pvPutTmo(seqg_env, 136/*pvToSet*/, DEFAULT, DEFAULT_TIMEOUT);
-# line 731 "../sncExample.stt"
+# line 784 "../sncExample.stt"
 			printf("AutoOnOff: %s is set to: %f\n", seqg_var->pvName, seqg_var->pvToSet);
-# line 733 "../sncExample.stt"
+# line 786 "../sncExample.stt"
 			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:tuneISet1_set", seqg_var->devNo);
-# line 734 "../sncExample.stt"
+# line 787 "../sncExample.stt"
 			seq_pvAssign(seqg_env, 136/*pvToSet*/, seqg_var->pvName);
-# line 735 "../sncExample.stt"
+# line 788 "../sncExample.stt"
 			seq_pvGetTmo(seqg_env, 36/*process_parameters*/ + (CH_ID)(12 * (seqg_var->devNo - 1) + 3), DEFAULT, DEFAULT_TIMEOUT);
-# line 736 "../sncExample.stt"
+# line 789 "../sncExample.stt"
 			seqg_var->pvToSet = seqg_var->process_parameters[12 * (seqg_var->devNo - 1) + 3];
-# line 737 "../sncExample.stt"
+# line 790 "../sncExample.stt"
 			seq_pvPutTmo(seqg_env, 136/*pvToSet*/, DEFAULT, DEFAULT_TIMEOUT);
-# line 738 "../sncExample.stt"
+# line 791 "../sncExample.stt"
 			printf("AutoOnOff: %s is set to: %f\n", seqg_var->pvName, seqg_var->pvToSet);
-# line 740 "../sncExample.stt"
+# line 793 "../sncExample.stt"
 			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:tuneISet2_set", seqg_var->devNo);
-# line 741 "../sncExample.stt"
+# line 794 "../sncExample.stt"
 			seq_pvAssign(seqg_env, 136/*pvToSet*/, seqg_var->pvName);
-# line 742 "../sncExample.stt"
+# line 795 "../sncExample.stt"
 			seq_pvGetTmo(seqg_env, 36/*process_parameters*/ + (CH_ID)(12 * (seqg_var->devNo - 1) + 4), DEFAULT, DEFAULT_TIMEOUT);
-# line 743 "../sncExample.stt"
+# line 796 "../sncExample.stt"
 			seqg_var->pvToSet = seqg_var->process_parameters[12 * (seqg_var->devNo - 1) + 4];
-# line 744 "../sncExample.stt"
+# line 797 "../sncExample.stt"
 			seq_pvPutTmo(seqg_env, 136/*pvToSet*/, DEFAULT, DEFAULT_TIMEOUT);
-# line 745 "../sncExample.stt"
+# line 798 "../sncExample.stt"
 			printf("AutoOnOff: %s is set to: %f\n", seqg_var->pvName, seqg_var->pvToSet);
-# line 747 "../sncExample.stt"
+# line 800 "../sncExample.stt"
 			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:tuneISet3_set", seqg_var->devNo);
-# line 748 "../sncExample.stt"
+# line 801 "../sncExample.stt"
 			seq_pvAssign(seqg_env, 136/*pvToSet*/, seqg_var->pvName);
-# line 749 "../sncExample.stt"
+# line 802 "../sncExample.stt"
 			seq_pvGetTmo(seqg_env, 36/*process_parameters*/ + (CH_ID)(12 * (seqg_var->devNo - 1) + 5), DEFAULT, DEFAULT_TIMEOUT);
-# line 750 "../sncExample.stt"
+# line 803 "../sncExample.stt"
 			seqg_var->pvToSet = seqg_var->process_parameters[12 * (seqg_var->devNo - 1) + 5];
-# line 751 "../sncExample.stt"
+# line 804 "../sncExample.stt"
 			seq_pvPutTmo(seqg_env, 136/*pvToSet*/, DEFAULT, DEFAULT_TIMEOUT);
-# line 752 "../sncExample.stt"
+# line 805 "../sncExample.stt"
 			printf("AutoOnOff: %s is set to: %f\n", seqg_var->pvName, seqg_var->pvToSet);
-# line 754 "../sncExample.stt"
+# line 807 "../sncExample.stt"
 			printf("AutoOnOff: Turn On System: Tune I Set End\n");
 		}
 		return;
@@ -1396,11 +1588,18 @@ static void seqg_action_ssOnOff_0_OnTuneISet(SS_ID seqg_env, int seqg_trn, int *
 /* Event function for state "OnAmpFF" in state set "ssOnOff" */
 static seqBool seqg_event_ssOnOff_0_OnAmpFF(SS_ID seqg_env, int *seqg_ptrn, int *seqg_pnst)
 {
-# line 758 "../sncExample.stt"
+# line 811 "../sncExample.stt"
+	if (seqg_var->statusFlag == 10)
+	{
+		*seqg_pnst = 0;
+		*seqg_ptrn = 0;
+		return TRUE;
+	}
+# line 816 "../sncExample.stt"
 	if (seq_delay(seqg_env, seqg_var->interval))
 	{
 		*seqg_pnst = 14;
-		*seqg_ptrn = 0;
+		*seqg_ptrn = 1;
 		return TRUE;
 	}
 	return FALSE;
@@ -1413,23 +1612,33 @@ static void seqg_action_ssOnOff_0_OnAmpFF(SS_ID seqg_env, int seqg_trn, int *seq
 	{
 	case 0:
 		{
-# line 759 "../sncExample.stt"
-			printf("AutoOnOff: Turn On System: Turn On Amp FF\n");
-# line 760 "../sncExample.stt"
-			sprintf(seqg_var->logMsg, "AutoOnOff:rcsRf%d: Turn On Amp FF...", seqg_var->devNo);
-# line 761 "../sncExample.stt"
+# line 812 "../sncExample.stt"
+			printf("AutoOnOff: Turn On System: Interrupt!!!\n");
+# line 813 "../sncExample.stt"
+			sprintf(seqg_var->logMsg, "rcsRf%d: Turn On Interrupt!!!", seqg_var->devNo);
+# line 814 "../sncExample.stt"
 			seq_pvPutTmo(seqg_env, 132/*logMsg*/, DEFAULT, DEFAULT_TIMEOUT);
-# line 763 "../sncExample.stt"
+		}
+		return;
+	case 1:
+		{
+# line 817 "../sncExample.stt"
+			printf("AutoOnOff: Turn On System: Turn On Amp FF\n");
+# line 818 "../sncExample.stt"
+			sprintf(seqg_var->logMsg, "AutoOnOff:rcsRf%d: Turn On Amp FF...", seqg_var->devNo);
+# line 819 "../sncExample.stt"
+			seq_pvPutTmo(seqg_env, 132/*logMsg*/, DEFAULT, DEFAULT_TIMEOUT);
+# line 821 "../sncExample.stt"
 			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:ampFFOption_set", seqg_var->devNo);
-# line 764 "../sncExample.stt"
+# line 822 "../sncExample.stt"
 			seq_pvAssign(seqg_env, 137/*pvToSwitch*/, seqg_var->pvName);
-# line 765 "../sncExample.stt"
+# line 823 "../sncExample.stt"
 			seqg_var->pvToSwitch = 1;
-# line 766 "../sncExample.stt"
+# line 824 "../sncExample.stt"
 			seq_pvPutTmo(seqg_env, 137/*pvToSwitch*/, DEFAULT, DEFAULT_TIMEOUT);
-# line 767 "../sncExample.stt"
+# line 825 "../sncExample.stt"
 			printf("AutoOnOff: %s is set to: %d\n", seqg_var->pvName, seqg_var->pvToSwitch);
-# line 769 "../sncExample.stt"
+# line 827 "../sncExample.stt"
 			printf("AutoOnOff: Turn On System: Turn On Amp FF End\n");
 		}
 		return;
@@ -1441,11 +1650,18 @@ static void seqg_action_ssOnOff_0_OnAmpFF(SS_ID seqg_env, int seqg_trn, int *seq
 /* Event function for state "OnAmpCoefficUp1" in state set "ssOnOff" */
 static seqBool seqg_event_ssOnOff_0_OnAmpCoefficUp1(SS_ID seqg_env, int *seqg_ptrn, int *seqg_pnst)
 {
-# line 773 "../sncExample.stt"
+# line 831 "../sncExample.stt"
+	if (seqg_var->statusFlag == 10)
+	{
+		*seqg_pnst = 0;
+		*seqg_ptrn = 0;
+		return TRUE;
+	}
+# line 836 "../sncExample.stt"
 	if (seq_delay(seqg_env, 1))
 	{
 		*seqg_pnst = 15;
-		*seqg_ptrn = 0;
+		*seqg_ptrn = 1;
 		return TRUE;
 	}
 	return FALSE;
@@ -1458,25 +1674,35 @@ static void seqg_action_ssOnOff_0_OnAmpCoefficUp1(SS_ID seqg_env, int seqg_trn, 
 	{
 	case 0:
 		{
-# line 774 "../sncExample.stt"
-			printf("AutoOnOff: Turn On System: Amp Coeffic Up\n");
-# line 775 "../sncExample.stt"
-			sprintf(seqg_var->logMsg, "AutoOnOff:rcsRf%d: Amp Coeffic Up...", seqg_var->devNo);
-# line 776 "../sncExample.stt"
+# line 832 "../sncExample.stt"
+			printf("AutoOnOff: Turn On System: Interrupt!!!\n");
+# line 833 "../sncExample.stt"
+			sprintf(seqg_var->logMsg, "rcsRf%d: Turn On Interrupt!!!", seqg_var->devNo);
+# line 834 "../sncExample.stt"
 			seq_pvPutTmo(seqg_env, 132/*logMsg*/, DEFAULT, DEFAULT_TIMEOUT);
-# line 778 "../sncExample.stt"
+		}
+		return;
+	case 1:
+		{
+# line 837 "../sncExample.stt"
+			printf("AutoOnOff: Turn On System: Amp Coeffic Up\n");
+# line 838 "../sncExample.stt"
+			sprintf(seqg_var->logMsg, "AutoOnOff:rcsRf%d: Amp Coeffic Up...", seqg_var->devNo);
+# line 839 "../sncExample.stt"
+			seq_pvPutTmo(seqg_env, 132/*logMsg*/, DEFAULT, DEFAULT_TIMEOUT);
+# line 841 "../sncExample.stt"
 			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:ampCoefficient_set", seqg_var->devNo);
-# line 779 "../sncExample.stt"
+# line 842 "../sncExample.stt"
 			seq_pvAssign(seqg_env, 136/*pvToSet*/, seqg_var->pvName);
-# line 780 "../sncExample.stt"
+# line 843 "../sncExample.stt"
 			seq_pvGetTmo(seqg_env, 36/*process_parameters*/ + (CH_ID)(12 * (seqg_var->devNo - 1) + 6), DEFAULT, DEFAULT_TIMEOUT);
-# line 781 "../sncExample.stt"
+# line 844 "../sncExample.stt"
 			seqg_var->pvToSet = seqg_var->process_parameters[12 * (seqg_var->devNo - 1) + 6];
-# line 782 "../sncExample.stt"
+# line 845 "../sncExample.stt"
 			seq_pvPutTmo(seqg_env, 136/*pvToSet*/, DEFAULT, DEFAULT_TIMEOUT);
-# line 783 "../sncExample.stt"
+# line 846 "../sncExample.stt"
 			printf("AutoOnOff: %s is set to: %f\n", seqg_var->pvName, seqg_var->pvToSet);
-# line 785 "../sncExample.stt"
+# line 848 "../sncExample.stt"
 			printf("AutoOnOff: Turn On System: Amp Coeffic Up 1 End\n");
 		}
 		return;
@@ -1488,11 +1714,18 @@ static void seqg_action_ssOnOff_0_OnAmpCoefficUp1(SS_ID seqg_env, int seqg_trn, 
 /* Event function for state "OnAmpCoefficUp2" in state set "ssOnOff" */
 static seqBool seqg_event_ssOnOff_0_OnAmpCoefficUp2(SS_ID seqg_env, int *seqg_ptrn, int *seqg_pnst)
 {
-# line 789 "../sncExample.stt"
+# line 852 "../sncExample.stt"
+	if (seqg_var->statusFlag == 10)
+	{
+		*seqg_pnst = 0;
+		*seqg_ptrn = 0;
+		return TRUE;
+	}
+# line 857 "../sncExample.stt"
 	if (seq_delay(seqg_env, 1))
 	{
 		*seqg_pnst = 16;
-		*seqg_ptrn = 0;
+		*seqg_ptrn = 1;
 		return TRUE;
 	}
 	return FALSE;
@@ -1505,25 +1738,35 @@ static void seqg_action_ssOnOff_0_OnAmpCoefficUp2(SS_ID seqg_env, int seqg_trn, 
 	{
 	case 0:
 		{
-# line 790 "../sncExample.stt"
-			printf("AutoOnOff: Turn On System: Amp Coeffic Up\n");
-# line 791 "../sncExample.stt"
-			sprintf(seqg_var->logMsg, "AutoOnOff:rcsRf%d: Amp Coeffic Up...", seqg_var->devNo);
-# line 792 "../sncExample.stt"
+# line 853 "../sncExample.stt"
+			printf("AutoOnOff: Turn On System: Interrupt!!!\n");
+# line 854 "../sncExample.stt"
+			sprintf(seqg_var->logMsg, "rcsRf%d: Turn On Interrupt!!!", seqg_var->devNo);
+# line 855 "../sncExample.stt"
 			seq_pvPutTmo(seqg_env, 132/*logMsg*/, DEFAULT, DEFAULT_TIMEOUT);
-# line 794 "../sncExample.stt"
+		}
+		return;
+	case 1:
+		{
+# line 858 "../sncExample.stt"
+			printf("AutoOnOff: Turn On System: Amp Coeffic Up\n");
+# line 859 "../sncExample.stt"
+			sprintf(seqg_var->logMsg, "AutoOnOff:rcsRf%d: Amp Coeffic Up...", seqg_var->devNo);
+# line 860 "../sncExample.stt"
+			seq_pvPutTmo(seqg_env, 132/*logMsg*/, DEFAULT, DEFAULT_TIMEOUT);
+# line 862 "../sncExample.stt"
 			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:ampCoefficient_set", seqg_var->devNo);
-# line 795 "../sncExample.stt"
+# line 863 "../sncExample.stt"
 			seq_pvAssign(seqg_env, 136/*pvToSet*/, seqg_var->pvName);
-# line 796 "../sncExample.stt"
+# line 864 "../sncExample.stt"
 			seq_pvGetTmo(seqg_env, 36/*process_parameters*/ + (CH_ID)(12 * (seqg_var->devNo - 1) + 7), DEFAULT, DEFAULT_TIMEOUT);
-# line 797 "../sncExample.stt"
+# line 865 "../sncExample.stt"
 			seqg_var->pvToSet = seqg_var->process_parameters[12 * (seqg_var->devNo - 1) + 7];
-# line 798 "../sncExample.stt"
+# line 866 "../sncExample.stt"
 			seq_pvPutTmo(seqg_env, 136/*pvToSet*/, DEFAULT, DEFAULT_TIMEOUT);
-# line 799 "../sncExample.stt"
+# line 867 "../sncExample.stt"
 			printf("AutoOnOff: %s is set to: %f\n", seqg_var->pvName, seqg_var->pvToSet);
-# line 801 "../sncExample.stt"
+# line 869 "../sncExample.stt"
 			printf("AutoOnOff: Turn On System: Amp Coeffic Up 2 End\n");
 		}
 		return;
@@ -1535,11 +1778,18 @@ static void seqg_action_ssOnOff_0_OnAmpCoefficUp2(SS_ID seqg_env, int seqg_trn, 
 /* Event function for state "OnAmpCoefficUp3" in state set "ssOnOff" */
 static seqBool seqg_event_ssOnOff_0_OnAmpCoefficUp3(SS_ID seqg_env, int *seqg_ptrn, int *seqg_pnst)
 {
-# line 805 "../sncExample.stt"
+# line 873 "../sncExample.stt"
+	if (seqg_var->statusFlag == 10)
+	{
+		*seqg_pnst = 0;
+		*seqg_ptrn = 0;
+		return TRUE;
+	}
+# line 878 "../sncExample.stt"
 	if (seq_delay(seqg_env, 1))
 	{
 		*seqg_pnst = 17;
-		*seqg_ptrn = 0;
+		*seqg_ptrn = 1;
 		return TRUE;
 	}
 	return FALSE;
@@ -1552,25 +1802,35 @@ static void seqg_action_ssOnOff_0_OnAmpCoefficUp3(SS_ID seqg_env, int seqg_trn, 
 	{
 	case 0:
 		{
-# line 806 "../sncExample.stt"
-			printf("AutoOnOff: Turn On System: Amp Coeffic Up\n");
-# line 807 "../sncExample.stt"
-			sprintf(seqg_var->logMsg, "AutoOnOff:rcsRf%d: Amp Coeffic Up...", seqg_var->devNo);
-# line 808 "../sncExample.stt"
+# line 874 "../sncExample.stt"
+			printf("AutoOnOff: Turn On System: Interrupt!!!\n");
+# line 875 "../sncExample.stt"
+			sprintf(seqg_var->logMsg, "rcsRf%d: Turn On Interrupt!!!", seqg_var->devNo);
+# line 876 "../sncExample.stt"
 			seq_pvPutTmo(seqg_env, 132/*logMsg*/, DEFAULT, DEFAULT_TIMEOUT);
-# line 810 "../sncExample.stt"
+		}
+		return;
+	case 1:
+		{
+# line 879 "../sncExample.stt"
+			printf("AutoOnOff: Turn On System: Amp Coeffic Up\n");
+# line 880 "../sncExample.stt"
+			sprintf(seqg_var->logMsg, "AutoOnOff:rcsRf%d: Amp Coeffic Up...", seqg_var->devNo);
+# line 881 "../sncExample.stt"
+			seq_pvPutTmo(seqg_env, 132/*logMsg*/, DEFAULT, DEFAULT_TIMEOUT);
+# line 883 "../sncExample.stt"
 			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:ampCoefficient_set", seqg_var->devNo);
-# line 811 "../sncExample.stt"
+# line 884 "../sncExample.stt"
 			seq_pvAssign(seqg_env, 136/*pvToSet*/, seqg_var->pvName);
-# line 812 "../sncExample.stt"
+# line 885 "../sncExample.stt"
 			seq_pvGetTmo(seqg_env, 36/*process_parameters*/ + (CH_ID)(12 * (seqg_var->devNo - 1) + 8), DEFAULT, DEFAULT_TIMEOUT);
-# line 813 "../sncExample.stt"
+# line 886 "../sncExample.stt"
 			seqg_var->pvToSet = seqg_var->process_parameters[12 * (seqg_var->devNo - 1) + 8];
-# line 814 "../sncExample.stt"
+# line 887 "../sncExample.stt"
 			seq_pvPutTmo(seqg_env, 136/*pvToSet*/, DEFAULT, DEFAULT_TIMEOUT);
-# line 815 "../sncExample.stt"
+# line 888 "../sncExample.stt"
 			printf("AutoOnOff: %s is set to: %f\n", seqg_var->pvName, seqg_var->pvToSet);
-# line 817 "../sncExample.stt"
+# line 890 "../sncExample.stt"
 			printf("AutoOnOff: Turn On System: Amp Coeffic Up 3 End\n");
 		}
 		return;
@@ -1582,11 +1842,18 @@ static void seqg_action_ssOnOff_0_OnAmpCoefficUp3(SS_ID seqg_env, int seqg_trn, 
 /* Event function for state "OnTuneComplexI" in state set "ssOnOff" */
 static seqBool seqg_event_ssOnOff_0_OnTuneComplexI(SS_ID seqg_env, int *seqg_ptrn, int *seqg_pnst)
 {
-# line 821 "../sncExample.stt"
+# line 894 "../sncExample.stt"
+	if (seqg_var->statusFlag == 10)
+	{
+		*seqg_pnst = 0;
+		*seqg_ptrn = 0;
+		return TRUE;
+	}
+# line 899 "../sncExample.stt"
 	if (seq_delay(seqg_env, 1))
 	{
 		*seqg_pnst = 18;
-		*seqg_ptrn = 0;
+		*seqg_ptrn = 1;
 		return TRUE;
 	}
 	return FALSE;
@@ -1599,37 +1866,47 @@ static void seqg_action_ssOnOff_0_OnTuneComplexI(SS_ID seqg_env, int seqg_trn, i
 	{
 	case 0:
 		{
-# line 822 "../sncExample.stt"
-			printf("AutoOnOff: Turn On System: Tune Complex I\n");
-# line 823 "../sncExample.stt"
-			sprintf(seqg_var->logMsg, "AutoOnOff:rcsRf%d: Tune Complex I...", seqg_var->devNo);
-# line 824 "../sncExample.stt"
+# line 895 "../sncExample.stt"
+			printf("AutoOnOff: Turn On System: Interrupt!!!\n");
+# line 896 "../sncExample.stt"
+			sprintf(seqg_var->logMsg, "rcsRf%d: Turn On Interrupt!!!", seqg_var->devNo);
+# line 897 "../sncExample.stt"
 			seq_pvPutTmo(seqg_env, 132/*logMsg*/, DEFAULT, DEFAULT_TIMEOUT);
-# line 826 "../sncExample.stt"
+		}
+		return;
+	case 1:
+		{
+# line 900 "../sncExample.stt"
+			printf("AutoOnOff: Turn On System: Tune Complex I\n");
+# line 901 "../sncExample.stt"
+			sprintf(seqg_var->logMsg, "AutoOnOff:rcsRf%d: Tune Complex I...", seqg_var->devNo);
+# line 902 "../sncExample.stt"
+			seq_pvPutTmo(seqg_env, 132/*logMsg*/, DEFAULT, DEFAULT_TIMEOUT);
+# line 904 "../sncExample.stt"
 			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:frontTuneISet_set", seqg_var->devNo);
-# line 827 "../sncExample.stt"
+# line 905 "../sncExample.stt"
 			seq_pvAssign(seqg_env, 136/*pvToSet*/, seqg_var->pvName);
-# line 828 "../sncExample.stt"
+# line 906 "../sncExample.stt"
 			seq_pvGetTmo(seqg_env, 36/*process_parameters*/ + (CH_ID)(12 * (seqg_var->devNo - 1) + 9), DEFAULT, DEFAULT_TIMEOUT);
-# line 829 "../sncExample.stt"
+# line 907 "../sncExample.stt"
 			seqg_var->pvToSet = seqg_var->process_parameters[12 * (seqg_var->devNo - 1) + 9];
-# line 830 "../sncExample.stt"
+# line 908 "../sncExample.stt"
 			seq_pvPutTmo(seqg_env, 136/*pvToSet*/, DEFAULT, DEFAULT_TIMEOUT);
-# line 831 "../sncExample.stt"
+# line 909 "../sncExample.stt"
 			printf("AutoOnOff: %s is set to: %f\n", seqg_var->pvName, seqg_var->pvToSet);
-# line 833 "../sncExample.stt"
+# line 911 "../sncExample.stt"
 			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:tuneISet3_set", seqg_var->devNo);
-# line 834 "../sncExample.stt"
+# line 912 "../sncExample.stt"
 			seq_pvAssign(seqg_env, 136/*pvToSet*/, seqg_var->pvName);
-# line 835 "../sncExample.stt"
+# line 913 "../sncExample.stt"
 			seq_pvGetTmo(seqg_env, 36/*process_parameters*/ + (CH_ID)(12 * (seqg_var->devNo - 1) + 10), DEFAULT, DEFAULT_TIMEOUT);
-# line 836 "../sncExample.stt"
+# line 914 "../sncExample.stt"
 			seqg_var->pvToSet = seqg_var->process_parameters[12 * (seqg_var->devNo - 1) + 10];
-# line 837 "../sncExample.stt"
+# line 915 "../sncExample.stt"
 			seq_pvPutTmo(seqg_env, 136/*pvToSet*/, DEFAULT, DEFAULT_TIMEOUT);
-# line 838 "../sncExample.stt"
+# line 916 "../sncExample.stt"
 			printf("AutoOnOff: %s is set to: %f\n", seqg_var->pvName, seqg_var->pvToSet);
-# line 840 "../sncExample.stt"
+# line 918 "../sncExample.stt"
 			printf("AutoOnOff: Turn On System: Tune Complex I End\n");
 		}
 		return;
@@ -1641,11 +1918,18 @@ static void seqg_action_ssOnOff_0_OnTuneComplexI(SS_ID seqg_env, int seqg_trn, i
 /* Event function for state "OnTuneFFAgain" in state set "ssOnOff" */
 static seqBool seqg_event_ssOnOff_0_OnTuneFFAgain(SS_ID seqg_env, int *seqg_ptrn, int *seqg_pnst)
 {
-# line 844 "../sncExample.stt"
+# line 922 "../sncExample.stt"
+	if (seqg_var->statusFlag == 10)
+	{
+		*seqg_pnst = 0;
+		*seqg_ptrn = 0;
+		return TRUE;
+	}
+# line 927 "../sncExample.stt"
 	if (seq_delay(seqg_env, 1))
 	{
 		*seqg_pnst = 19;
-		*seqg_ptrn = 0;
+		*seqg_ptrn = 1;
 		return TRUE;
 	}
 	return FALSE;
@@ -1658,23 +1942,33 @@ static void seqg_action_ssOnOff_0_OnTuneFFAgain(SS_ID seqg_env, int seqg_trn, in
 	{
 	case 0:
 		{
-# line 845 "../sncExample.stt"
-			printf("AutoOnOff: Turn On System: Tune FF Again\n");
-# line 846 "../sncExample.stt"
-			sprintf(seqg_var->logMsg, "AutoOnOff:rcsRf%d: Tune FF Again...", seqg_var->devNo);
-# line 847 "../sncExample.stt"
+# line 923 "../sncExample.stt"
+			printf("AutoOnOff: Turn On System: Interrupt!!!\n");
+# line 924 "../sncExample.stt"
+			sprintf(seqg_var->logMsg, "rcsRf%d: Turn On Interrupt!!!", seqg_var->devNo);
+# line 925 "../sncExample.stt"
 			seq_pvPutTmo(seqg_env, 132/*logMsg*/, DEFAULT, DEFAULT_TIMEOUT);
-# line 849 "../sncExample.stt"
+		}
+		return;
+	case 1:
+		{
+# line 928 "../sncExample.stt"
+			printf("AutoOnOff: Turn On System: Tune FF Again\n");
+# line 929 "../sncExample.stt"
+			sprintf(seqg_var->logMsg, "AutoOnOff:rcsRf%d: Tune FF Again...", seqg_var->devNo);
+# line 930 "../sncExample.stt"
+			seq_pvPutTmo(seqg_env, 132/*logMsg*/, DEFAULT, DEFAULT_TIMEOUT);
+# line 932 "../sncExample.stt"
 			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:tuneModifyOption_set", seqg_var->devNo);
-# line 850 "../sncExample.stt"
+# line 933 "../sncExample.stt"
 			seq_pvAssign(seqg_env, 137/*pvToSwitch*/, seqg_var->pvName);
-# line 851 "../sncExample.stt"
+# line 934 "../sncExample.stt"
 			seqg_var->pvToSwitch = 1;
-# line 852 "../sncExample.stt"
+# line 935 "../sncExample.stt"
 			seq_pvPutTmo(seqg_env, 137/*pvToSwitch*/, DEFAULT, DEFAULT_TIMEOUT);
-# line 853 "../sncExample.stt"
+# line 936 "../sncExample.stt"
 			printf("AutoOnOff: %s is set to: %d\n", seqg_var->pvName, seqg_var->pvToSwitch);
-# line 855 "../sncExample.stt"
+# line 938 "../sncExample.stt"
 			printf("AutoOnOff: Turn On System: Tune FF Again End\n");
 		}
 		return;
@@ -1686,11 +1980,18 @@ static void seqg_action_ssOnOff_0_OnTuneFFAgain(SS_ID seqg_env, int seqg_trn, in
 /* Event function for state "OnClosePhaseLoop" in state set "ssOnOff" */
 static seqBool seqg_event_ssOnOff_0_OnClosePhaseLoop(SS_ID seqg_env, int *seqg_ptrn, int *seqg_pnst)
 {
-# line 859 "../sncExample.stt"
+# line 942 "../sncExample.stt"
+	if (seqg_var->statusFlag == 10)
+	{
+		*seqg_pnst = 0;
+		*seqg_ptrn = 0;
+		return TRUE;
+	}
+# line 947 "../sncExample.stt"
 	if (seq_delay(seqg_env, seqg_var->interval))
 	{
 		*seqg_pnst = 20;
-		*seqg_ptrn = 0;
+		*seqg_ptrn = 1;
 		return TRUE;
 	}
 	return FALSE;
@@ -1703,23 +2004,33 @@ static void seqg_action_ssOnOff_0_OnClosePhaseLoop(SS_ID seqg_env, int seqg_trn,
 	{
 	case 0:
 		{
-# line 860 "../sncExample.stt"
-			printf("AutoOnOff: Turn On System: Close Phase Loop\n");
-# line 861 "../sncExample.stt"
-			sprintf(seqg_var->logMsg, "AutoOnOff:rcsRf%d: Close Phase Loop...", seqg_var->devNo);
-# line 862 "../sncExample.stt"
+# line 943 "../sncExample.stt"
+			printf("AutoOnOff: Turn On System: Interrupt!!!\n");
+# line 944 "../sncExample.stt"
+			sprintf(seqg_var->logMsg, "rcsRf%d: Turn On Interrupt!!!", seqg_var->devNo);
+# line 945 "../sncExample.stt"
 			seq_pvPutTmo(seqg_env, 132/*logMsg*/, DEFAULT, DEFAULT_TIMEOUT);
-# line 864 "../sncExample.stt"
+		}
+		return;
+	case 1:
+		{
+# line 948 "../sncExample.stt"
+			printf("AutoOnOff: Turn On System: Close Phase Loop\n");
+# line 949 "../sncExample.stt"
+			sprintf(seqg_var->logMsg, "AutoOnOff:rcsRf%d: Close Phase Loop...", seqg_var->devNo);
+# line 950 "../sncExample.stt"
+			seq_pvPutTmo(seqg_env, 132/*logMsg*/, DEFAULT, DEFAULT_TIMEOUT);
+# line 952 "../sncExample.stt"
 			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:phaseOption_set", seqg_var->devNo);
-# line 865 "../sncExample.stt"
+# line 953 "../sncExample.stt"
 			seq_pvAssign(seqg_env, 137/*pvToSwitch*/, seqg_var->pvName);
-# line 866 "../sncExample.stt"
+# line 954 "../sncExample.stt"
 			seqg_var->pvToSwitch = 1;
-# line 867 "../sncExample.stt"
+# line 955 "../sncExample.stt"
 			seq_pvPutTmo(seqg_env, 137/*pvToSwitch*/, DEFAULT, DEFAULT_TIMEOUT);
-# line 868 "../sncExample.stt"
+# line 956 "../sncExample.stt"
 			printf("AutoOnOff: %s is set to: %d\n", seqg_var->pvName, seqg_var->pvToSwitch);
-# line 870 "../sncExample.stt"
+# line 958 "../sncExample.stt"
 			printf("AutoOnOff: Turn On System: Close Phase Loop End\n");
 		}
 		return;
@@ -1731,11 +2042,18 @@ static void seqg_action_ssOnOff_0_OnClosePhaseLoop(SS_ID seqg_env, int seqg_trn,
 /* Event function for state "OnPhaseFF" in state set "ssOnOff" */
 static seqBool seqg_event_ssOnOff_0_OnPhaseFF(SS_ID seqg_env, int *seqg_ptrn, int *seqg_pnst)
 {
-# line 874 "../sncExample.stt"
-	if (seq_delay(seqg_env, seqg_var->interval))
+# line 962 "../sncExample.stt"
+	if (seqg_var->statusFlag == 10)
 	{
 		*seqg_pnst = 0;
 		*seqg_ptrn = 0;
+		return TRUE;
+	}
+# line 967 "../sncExample.stt"
+	if (seq_delay(seqg_env, seqg_var->interval))
+	{
+		*seqg_pnst = 0;
+		*seqg_ptrn = 1;
 		return TRUE;
 	}
 	return FALSE;
@@ -1748,33 +2066,43 @@ static void seqg_action_ssOnOff_0_OnPhaseFF(SS_ID seqg_env, int seqg_trn, int *s
 	{
 	case 0:
 		{
-# line 875 "../sncExample.stt"
+# line 963 "../sncExample.stt"
+			printf("AutoOnOff: Turn On System: Interrupt!!!\n");
+# line 964 "../sncExample.stt"
+			sprintf(seqg_var->logMsg, "rcsRf%d: Turn On Interrupt!!!", seqg_var->devNo);
+# line 965 "../sncExample.stt"
+			seq_pvPutTmo(seqg_env, 132/*logMsg*/, DEFAULT, DEFAULT_TIMEOUT);
+		}
+		return;
+	case 1:
+		{
+# line 968 "../sncExample.stt"
 			printf("AutoOnOff: Turn On System: Turn On Phase FF\n");
-# line 876 "../sncExample.stt"
+# line 969 "../sncExample.stt"
 			sprintf(seqg_var->logMsg, "AutoOnOff:rcsRf%d: Turn On Phase FF...", seqg_var->devNo);
-# line 877 "../sncExample.stt"
+# line 970 "../sncExample.stt"
 			seq_pvPutTmo(seqg_env, 132/*logMsg*/, DEFAULT, DEFAULT_TIMEOUT);
-# line 879 "../sncExample.stt"
+# line 972 "../sncExample.stt"
 			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:phaseFFOption_set", seqg_var->devNo);
-# line 880 "../sncExample.stt"
+# line 973 "../sncExample.stt"
 			seq_pvAssign(seqg_env, 137/*pvToSwitch*/, seqg_var->pvName);
-# line 881 "../sncExample.stt"
+# line 974 "../sncExample.stt"
 			seqg_var->pvToSwitch = 1;
-# line 882 "../sncExample.stt"
+# line 975 "../sncExample.stt"
 			seq_pvPutTmo(seqg_env, 137/*pvToSwitch*/, DEFAULT, DEFAULT_TIMEOUT);
-# line 883 "../sncExample.stt"
+# line 976 "../sncExample.stt"
 			printf("AutoOnOff: %s is set to: %d\n", seqg_var->pvName, seqg_var->pvToSwitch);
-# line 885 "../sncExample.stt"
+# line 978 "../sncExample.stt"
 			printf("AutoOnOff: Turn On System: Turn On Phase FF End\n");
-# line 886 "../sncExample.stt"
+# line 979 "../sncExample.stt"
 			sprintf(seqg_var->logMsg, "AutoOnOff:rcsRf%d: Turn On System End", seqg_var->devNo);
-# line 887 "../sncExample.stt"
+# line 980 "../sncExample.stt"
 			seq_pvPutTmo(seqg_env, 132/*logMsg*/, DEFAULT, DEFAULT_TIMEOUT);
-# line 888 "../sncExample.stt"
+# line 981 "../sncExample.stt"
 			printf("AutoOnOff: Turn On System: Turn On System End\n");
-# line 889 "../sncExample.stt"
+# line 982 "../sncExample.stt"
 			seqg_var->statusFlag = 0;
-# line 890 "../sncExample.stt"
+# line 983 "../sncExample.stt"
 			seq_pvPutTmo(seqg_env, 133/*statusFlag*/, DEFAULT, DEFAULT_TIMEOUT);
 		}
 		return;
@@ -1786,7 +2114,7 @@ static void seqg_action_ssOnOff_0_OnPhaseFF(SS_ID seqg_env, int seqg_trn, int *s
 /* Event function for state "OffInit" in state set "ssOnOff" */
 static seqBool seqg_event_ssOnOff_0_OffInit(SS_ID seqg_env, int *seqg_ptrn, int *seqg_pnst)
 {
-# line 894 "../sncExample.stt"
+# line 987 "../sncExample.stt"
 	if (seq_delay(seqg_env, 0.5))
 	{
 		*seqg_pnst = 22;
@@ -1803,23 +2131,23 @@ static void seqg_action_ssOnOff_0_OffInit(SS_ID seqg_env, int seqg_trn, int *seq
 	{
 	case 0:
 		{
-# line 895 "../sncExample.stt"
+# line 988 "../sncExample.stt"
 			sprintf(seqg_var->logMsg, "AutoOnOff:rcsRf%d: Off Init", seqg_var->devNo);
-# line 896 "../sncExample.stt"
+# line 989 "../sncExample.stt"
 			seq_pvPutTmo(seqg_env, 132/*logMsg*/, DEFAULT, DEFAULT_TIMEOUT);
-# line 898 "../sncExample.stt"
+# line 991 "../sncExample.stt"
 			printf("AutoOnOff: Turn Off System: Open Phase Loop...\n");
-# line 900 "../sncExample.stt"
+# line 993 "../sncExample.stt"
 			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:phaseOption_set", seqg_var->devNo);
-# line 901 "../sncExample.stt"
+# line 994 "../sncExample.stt"
 			seq_pvAssign(seqg_env, 137/*pvToSwitch*/, seqg_var->pvName);
-# line 902 "../sncExample.stt"
+# line 995 "../sncExample.stt"
 			seqg_var->pvToSwitch = 0;
-# line 903 "../sncExample.stt"
+# line 996 "../sncExample.stt"
 			seq_pvPutTmo(seqg_env, 137/*pvToSwitch*/, DEFAULT, DEFAULT_TIMEOUT);
-# line 904 "../sncExample.stt"
+# line 997 "../sncExample.stt"
 			printf("AutoOnOff: %s is set to: %d\n", seqg_var->pvName, seqg_var->pvToSwitch);
-# line 906 "../sncExample.stt"
+# line 999 "../sncExample.stt"
 			printf("AutoOnOff: Turn Off System: Open Phase Loop End\n");
 		}
 		return;
@@ -1831,7 +2159,7 @@ static void seqg_action_ssOnOff_0_OffInit(SS_ID seqg_env, int seqg_trn, int *seq
 /* Event function for state "OffOpenGridLoop" in state set "ssOnOff" */
 static seqBool seqg_event_ssOnOff_0_OffOpenGridLoop(SS_ID seqg_env, int *seqg_ptrn, int *seqg_pnst)
 {
-# line 910 "../sncExample.stt"
+# line 1003 "../sncExample.stt"
 	if (seq_delay(seqg_env, 0.5))
 	{
 		*seqg_pnst = 23;
@@ -1848,23 +2176,23 @@ static void seqg_action_ssOnOff_0_OffOpenGridLoop(SS_ID seqg_env, int seqg_trn, 
 	{
 	case 0:
 		{
-# line 911 "../sncExample.stt"
+# line 1004 "../sncExample.stt"
 			sprintf(seqg_var->logMsg, "AutoOnOff:rcsRf%d: Open Grid Tune Loop", seqg_var->devNo);
-# line 912 "../sncExample.stt"
+# line 1005 "../sncExample.stt"
 			seq_pvPutTmo(seqg_env, 132/*logMsg*/, DEFAULT, DEFAULT_TIMEOUT);
-# line 914 "../sncExample.stt"
+# line 1007 "../sncExample.stt"
 			printf("AutoOnOff: Turn Off System: Open Grid Loop\n");
-# line 916 "../sncExample.stt"
+# line 1009 "../sncExample.stt"
 			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:frontTuneOption_set", seqg_var->devNo);
-# line 917 "../sncExample.stt"
+# line 1010 "../sncExample.stt"
 			seq_pvAssign(seqg_env, 137/*pvToSwitch*/, seqg_var->pvName);
-# line 918 "../sncExample.stt"
+# line 1011 "../sncExample.stt"
 			seqg_var->pvToSwitch = 0;
-# line 919 "../sncExample.stt"
+# line 1012 "../sncExample.stt"
 			seq_pvPutTmo(seqg_env, 137/*pvToSwitch*/, DEFAULT, DEFAULT_TIMEOUT);
-# line 920 "../sncExample.stt"
+# line 1013 "../sncExample.stt"
 			printf("AutoOnOff: %s is set to: %d\n", seqg_var->pvName, seqg_var->pvToSwitch);
-# line 922 "../sncExample.stt"
+# line 1015 "../sncExample.stt"
 			printf("AutoOnOff: Turn Off System: Open Grid Tune Loop End\n");
 		}
 		return;
@@ -1876,10 +2204,10 @@ static void seqg_action_ssOnOff_0_OffOpenGridLoop(SS_ID seqg_env, int seqg_trn, 
 /* Event function for state "OffAmpZero" in state set "ssOnOff" */
 static seqBool seqg_event_ssOnOff_0_OffAmpZero(SS_ID seqg_env, int *seqg_ptrn, int *seqg_pnst)
 {
-# line 926 "../sncExample.stt"
+# line 1019 "../sncExample.stt"
 	if (seq_delay(seqg_env, 0.5))
 	{
-		*seqg_pnst = 0;
+		*seqg_pnst = 24;
 		*seqg_ptrn = 0;
 		return TRUE;
 	}
@@ -1893,35 +2221,128 @@ static void seqg_action_ssOnOff_0_OffAmpZero(SS_ID seqg_env, int seqg_trn, int *
 	{
 	case 0:
 		{
-# line 927 "../sncExample.stt"
+# line 1020 "../sncExample.stt"
 			sprintf(seqg_var->logMsg, "AutoOnOff:rcsRf%d: Amp Zero", seqg_var->devNo);
-# line 928 "../sncExample.stt"
+# line 1021 "../sncExample.stt"
 			seq_pvPutTmo(seqg_env, 132/*logMsg*/, DEFAULT, DEFAULT_TIMEOUT);
-# line 929 "../sncExample.stt"
+# line 1022 "../sncExample.stt"
 			printf("AutoOnOff: Turn Off System: Amp Zero\n");
-# line 931 "../sncExample.stt"
+# line 1024 "../sncExample.stt"
 			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:amp_set", seqg_var->devNo);
-# line 932 "../sncExample.stt"
+# line 1025 "../sncExample.stt"
 			seq_pvAssign(seqg_env, 136/*pvToSet*/, seqg_var->pvName);
-# line 933 "../sncExample.stt"
+# line 1026 "../sncExample.stt"
 			seq_pvGetTmo(seqg_env, 36/*process_parameters*/ + (CH_ID)(12 * (seqg_var->devNo - 1) + 11), DEFAULT, DEFAULT_TIMEOUT);
-# line 934 "../sncExample.stt"
+# line 1027 "../sncExample.stt"
 			seqg_var->pvToSet = seqg_var->process_parameters[12 * (seqg_var->devNo - 1) + 11];
-# line 935 "../sncExample.stt"
+# line 1028 "../sncExample.stt"
 			seq_pvPutTmo(seqg_env, 136/*pvToSet*/, DEFAULT, DEFAULT_TIMEOUT);
-# line 936 "../sncExample.stt"
+# line 1029 "../sncExample.stt"
 			printf("AutoOnOff: %s is set to: %f\n", seqg_var->pvName, seqg_var->pvToSet);
-# line 938 "../sncExample.stt"
-			printf("AutoOnOff: Turn Off System: Amp Zero End\n");
-# line 939 "../sncExample.stt"
-			printf("AutoOnOff: Turn Off System: Turn Off System End\n");
-# line 940 "../sncExample.stt"
-			sprintf(seqg_var->logMsg, "AutoOnOff:rcsRf%d: Turn Off System End", seqg_var->devNo);
-# line 941 "../sncExample.stt"
+		}
+		return;
+	}
+}
+
+/****** Code for state "OffOpenFFM" in state set "ssOnOff" ******/
+
+/* Event function for state "OffOpenFFM" in state set "ssOnOff" */
+static seqBool seqg_event_ssOnOff_0_OffOpenFFM(SS_ID seqg_env, int *seqg_ptrn, int *seqg_pnst)
+{
+# line 1033 "../sncExample.stt"
+	if (seq_delay(seqg_env, 0.5))
+	{
+		*seqg_pnst = 0;
+		*seqg_ptrn = 0;
+		return TRUE;
+	}
+	return FALSE;
+}
+
+/* Action function for state "OffOpenFFM" in state set "ssOnOff" */
+static void seqg_action_ssOnOff_0_OffOpenFFM(SS_ID seqg_env, int seqg_trn, int *seqg_pnst)
+{
+	switch(seqg_trn)
+	{
+	case 0:
+		{
+# line 1034 "../sncExample.stt"
+			printf("AutoOnOff: Turn Off System: Turn Off Modify\n");
+# line 1035 "../sncExample.stt"
+			sprintf(seqg_var->logMsg, "AutoOnOff:rcsRf%d: Turn Off Modify...", seqg_var->devNo);
+# line 1036 "../sncExample.stt"
 			seq_pvPutTmo(seqg_env, 132/*logMsg*/, DEFAULT, DEFAULT_TIMEOUT);
-# line 942 "../sncExample.stt"
+# line 1038 "../sncExample.stt"
+			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:ampModifyOption_set", seqg_var->devNo);
+# line 1039 "../sncExample.stt"
+			seq_pvAssign(seqg_env, 137/*pvToSwitch*/, seqg_var->pvName);
+# line 1040 "../sncExample.stt"
+			seqg_var->pvToSwitch = 0;
+# line 1041 "../sncExample.stt"
+			seq_pvPutTmo(seqg_env, 137/*pvToSwitch*/, DEFAULT, DEFAULT_TIMEOUT);
+# line 1042 "../sncExample.stt"
+			printf("AutoOnOff: %s is set to: %d\n", seqg_var->pvName, seqg_var->pvToSwitch);
+# line 1044 "../sncExample.stt"
+			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:tuneModifyOption_set", seqg_var->devNo);
+# line 1045 "../sncExample.stt"
+			seq_pvAssign(seqg_env, 137/*pvToSwitch*/, seqg_var->pvName);
+# line 1046 "../sncExample.stt"
+			seqg_var->pvToSwitch = 0;
+# line 1047 "../sncExample.stt"
+			seq_pvPutTmo(seqg_env, 137/*pvToSwitch*/, DEFAULT, DEFAULT_TIMEOUT);
+# line 1048 "../sncExample.stt"
+			printf("AutoOnOff: %s is set to: %d\n", seqg_var->pvName, seqg_var->pvToSwitch);
+# line 1050 "../sncExample.stt"
+			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:phaseModifyOption_set", seqg_var->devNo);
+# line 1051 "../sncExample.stt"
+			seq_pvAssign(seqg_env, 137/*pvToSwitch*/, seqg_var->pvName);
+# line 1052 "../sncExample.stt"
+			seqg_var->pvToSwitch = 0;
+# line 1053 "../sncExample.stt"
+			seq_pvPutTmo(seqg_env, 137/*pvToSwitch*/, DEFAULT, DEFAULT_TIMEOUT);
+# line 1054 "../sncExample.stt"
+			printf("AutoOnOff: %s is set to: %d\n", seqg_var->pvName, seqg_var->pvToSwitch);
+# line 1056 "../sncExample.stt"
+			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:tuneFFOption_set", seqg_var->devNo);
+# line 1057 "../sncExample.stt"
+			seq_pvAssign(seqg_env, 137/*pvToSwitch*/, seqg_var->pvName);
+# line 1058 "../sncExample.stt"
+			seqg_var->pvToSwitch = 0;
+# line 1059 "../sncExample.stt"
+			seq_pvPutTmo(seqg_env, 137/*pvToSwitch*/, DEFAULT, DEFAULT_TIMEOUT);
+# line 1060 "../sncExample.stt"
+			printf("AutoOnOff: %s is set to: %d\n", seqg_var->pvName, seqg_var->pvToSwitch);
+# line 1062 "../sncExample.stt"
+			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:ampFFOption_set", seqg_var->devNo);
+# line 1063 "../sncExample.stt"
+			seq_pvAssign(seqg_env, 137/*pvToSwitch*/, seqg_var->pvName);
+# line 1064 "../sncExample.stt"
+			seqg_var->pvToSwitch = 0;
+# line 1065 "../sncExample.stt"
+			seq_pvPutTmo(seqg_env, 137/*pvToSwitch*/, DEFAULT, DEFAULT_TIMEOUT);
+# line 1066 "../sncExample.stt"
+			printf("AutoOnOff: %s is set to: %d\n", seqg_var->pvName, seqg_var->pvToSwitch);
+# line 1068 "../sncExample.stt"
+			sprintf(seqg_var->pvName, "AutoOnOff:rcsRf%d:phaseFFOption_set", seqg_var->devNo);
+# line 1069 "../sncExample.stt"
+			seq_pvAssign(seqg_env, 137/*pvToSwitch*/, seqg_var->pvName);
+# line 1070 "../sncExample.stt"
+			seqg_var->pvToSwitch = 0;
+# line 1071 "../sncExample.stt"
+			seq_pvPutTmo(seqg_env, 137/*pvToSwitch*/, DEFAULT, DEFAULT_TIMEOUT);
+# line 1072 "../sncExample.stt"
+			printf("AutoOnOff: %s is set to: %d\n", seqg_var->pvName, seqg_var->pvToSwitch);
+# line 1074 "../sncExample.stt"
+			printf("AutoOnOff: Turn Off System: Amp Zero End\n");
+# line 1075 "../sncExample.stt"
+			printf("AutoOnOff: Turn Off System: Turn Off System End\n");
+# line 1076 "../sncExample.stt"
+			sprintf(seqg_var->logMsg, "AutoOnOff:rcsRf%d: Turn Off System End", seqg_var->devNo);
+# line 1077 "../sncExample.stt"
+			seq_pvPutTmo(seqg_env, 132/*logMsg*/, DEFAULT, DEFAULT_TIMEOUT);
+# line 1078 "../sncExample.stt"
 			seqg_var->statusFlag = 0;
-# line 943 "../sncExample.stt"
+# line 1079 "../sncExample.stt"
 			seq_pvPutTmo(seqg_env, 133/*statusFlag*/, DEFAULT, DEFAULT_TIMEOUT);
 		}
 		return;
@@ -2088,140 +2509,140 @@ static const seqMask seqg_mask_ssOnOff_0_OnInit[] = {
 	0x00000000,
 	0x00000000,
 	0x00000000,
-	0x00000080,
+	0x000000c0,
 };
 static const seqMask seqg_mask_ssOnOff_0_OnInit2[] = {
 	0x00000000,
 	0x00000000,
 	0x00000000,
 	0x00000000,
-	0x00000100,
+	0x00000140,
 };
 static const seqMask seqg_mask_ssOnOff_0_OnModify[] = {
 	0x00000000,
 	0x00000000,
 	0x00000000,
 	0x00000000,
-	0x00000080,
+	0x000000c0,
 };
 static const seqMask seqg_mask_ssOnOff_0_OnReset[] = {
 	0x00000000,
 	0x00000000,
 	0x00000000,
 	0x00000000,
-	0x00000080,
+	0x000000c0,
 };
 static const seqMask seqg_mask_ssOnOff_0_OnAmpPoint[] = {
 	0x00000000,
 	0x00000000,
 	0x00000000,
 	0x00000000,
-	0x00000000,
+	0x00000040,
 };
 static const seqMask seqg_mask_ssOnOff_0_OnCloseTuneLoop[] = {
 	0x00000000,
 	0x00000000,
 	0x00000000,
 	0x00000000,
-	0x00000000,
+	0x00000040,
 };
 static const seqMask seqg_mask_ssOnOff_0_OnCloseGridTune[] = {
 	0x00000000,
 	0x00000000,
 	0x00000000,
 	0x00000000,
-	0x00000000,
+	0x00000040,
 };
 static const seqMask seqg_mask_ssOnOff_0_OnTuneFF[] = {
 	0x00000000,
 	0x00000000,
 	0x00000000,
 	0x00000000,
-	0x00000080,
+	0x000000c0,
 };
 static const seqMask seqg_mask_ssOnOff_0_OnTuneMOff[] = {
 	0x00000000,
 	0x00000000,
 	0x00000000,
 	0x00000000,
-	0x00000080,
+	0x000000c0,
 };
 static const seqMask seqg_mask_ssOnOff_0_OnGridTuneISet[] = {
 	0x00000000,
 	0x00000000,
 	0x00000000,
 	0x00000000,
-	0x00000080,
+	0x000000c0,
 };
 static const seqMask seqg_mask_ssOnOff_0_OnCloseAmpLoop[] = {
 	0x00000000,
 	0x00000000,
 	0x00000000,
 	0x00000000,
-	0x00000080,
+	0x000000c0,
 };
 static const seqMask seqg_mask_ssOnOff_0_OnTuneISet[] = {
 	0x00000000,
 	0x00000000,
 	0x00000000,
 	0x00000000,
-	0x00000080,
+	0x000000c0,
 };
 static const seqMask seqg_mask_ssOnOff_0_OnAmpFF[] = {
 	0x00000000,
 	0x00000000,
 	0x00000000,
 	0x00000000,
-	0x00000080,
+	0x000000c0,
 };
 static const seqMask seqg_mask_ssOnOff_0_OnAmpCoefficUp1[] = {
 	0x00000000,
 	0x00000000,
 	0x00000000,
 	0x00000000,
-	0x00000000,
+	0x00000040,
 };
 static const seqMask seqg_mask_ssOnOff_0_OnAmpCoefficUp2[] = {
 	0x00000000,
 	0x00000000,
 	0x00000000,
 	0x00000000,
-	0x00000000,
+	0x00000040,
 };
 static const seqMask seqg_mask_ssOnOff_0_OnAmpCoefficUp3[] = {
 	0x00000000,
 	0x00000000,
 	0x00000000,
 	0x00000000,
-	0x00000000,
+	0x00000040,
 };
 static const seqMask seqg_mask_ssOnOff_0_OnTuneComplexI[] = {
 	0x00000000,
 	0x00000000,
 	0x00000000,
 	0x00000000,
-	0x00000000,
+	0x00000040,
 };
 static const seqMask seqg_mask_ssOnOff_0_OnTuneFFAgain[] = {
 	0x00000000,
 	0x00000000,
 	0x00000000,
 	0x00000000,
-	0x00000000,
+	0x00000040,
 };
 static const seqMask seqg_mask_ssOnOff_0_OnClosePhaseLoop[] = {
 	0x00000000,
 	0x00000000,
 	0x00000000,
 	0x00000000,
-	0x00000080,
+	0x000000c0,
 };
 static const seqMask seqg_mask_ssOnOff_0_OnPhaseFF[] = {
 	0x00000000,
 	0x00000000,
 	0x00000000,
 	0x00000000,
-	0x00000080,
+	0x000000c0,
 };
 static const seqMask seqg_mask_ssOnOff_0_OffInit[] = {
 	0x00000000,
@@ -2238,6 +2659,13 @@ static const seqMask seqg_mask_ssOnOff_0_OffOpenGridLoop[] = {
 	0x00000000,
 };
 static const seqMask seqg_mask_ssOnOff_0_OffAmpZero[] = {
+	0x00000000,
+	0x00000000,
+	0x00000000,
+	0x00000000,
+	0x00000000,
+};
+static const seqMask seqg_mask_ssOnOff_0_OffOpenFFM[] = {
 	0x00000000,
 	0x00000000,
 	0x00000000,
@@ -2463,6 +2891,15 @@ static seqState seqg_states_ssOnOff[] = {
 	/* event mask array */  seqg_mask_ssOnOff_0_OffAmpZero,
 	/* state options */     (0)
 	},
+	{
+	/* state name */        "OffOpenFFM",
+	/* action function */   seqg_action_ssOnOff_0_OffOpenFFM,
+	/* event function */    seqg_event_ssOnOff_0_OffOpenFFM,
+	/* entry function */    0,
+	/* exit function */     0,
+	/* event mask array */  seqg_mask_ssOnOff_0_OffOpenFFM,
+	/* state options */     (0)
+	},
 };
 
 /* State set table */
@@ -2470,7 +2907,7 @@ static seqSS seqg_statesets[] = {
 	{
 	/* state set name */    "ssOnOff",
 	/* states */            seqg_states_ssOnOff,
-	/* number of states */  24
+	/* number of states */  25
 	},
 };
 
